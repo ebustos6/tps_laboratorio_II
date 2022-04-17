@@ -92,6 +92,39 @@ namespace MiCalculadora
             this.btnConvertirADecimal.Enabled = false;
         }
 
-        
+        /// <summary>
+        /// convierte el resultado a binario, habilita el boton de convertir a decimal y se dehabilita a si mismo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConvertirABinario_Click(object sender, EventArgs e)
+        {
+            this.btnConvertirADecimal.Enabled = true;
+            if (!string.IsNullOrWhiteSpace(this.lblResultado.Text))
+            {
+                Operando resultado = new Operando();
+                this.lblResultado.Text = resultado.DecimalBinario(this.lblResultado.Text);
+                this.btnConvertirADecimal.Enabled = true;
+                this.btnConvertirABinario.Enabled = false;
+                this.btnOperar.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// convierte un binario a decimal, habilita el boton de convertir a binario y se deshabilita a si mismo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnConvertirADecimal_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(this.lblResultado.Text))
+            {
+                Operando resultado = new Operando();
+                this.lblResultado.Text = resultado.BinarioDecimal(this.lblResultado.Text);
+                this.btnConvertirABinario.Enabled = true;
+                this.btnConvertirADecimal.Enabled = false;
+                this.btnOperar.Enabled = true;
+            }
+        }
     }
 }
