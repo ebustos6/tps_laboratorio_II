@@ -17,18 +17,7 @@ namespace MiCalculadora
         public FormCalculadora()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// deshabilita los botones convertir a binario y convertir a decimal cuando carga el formulario.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FormCalculadora_Load(object sender, EventArgs e)
-        {
-            this.cmbOperador.DataSource = new char[] { ' ', '+','-','*','/'};
-            this.btnConvertirABinario.Enabled = false;
-            this.btnConvertirADecimal.Enabled = false;
+            this.cmbOperador.DataSource = new char[] { ' ', '+', '-', '*', '/' };
         }
 
         /// <summary>
@@ -46,7 +35,7 @@ namespace MiCalculadora
         }
 
         /// <summary>
-        /// invoca a la funcion limpiar.
+        /// invoca al metodo Limpiar.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,13 +45,13 @@ namespace MiCalculadora
         }
 
         /// <summary>
-        /// invoca al metodo Cerrar.
+        /// invoca al metodo Limpiar.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCerrar_Click(object sender, EventArgs e)
+        private void FormCalculadora_Load(object sender, EventArgs e)
         {
-              this.Cerrar();
+            this.Limpiar();
         }
 
         /// <summary>
@@ -75,6 +64,31 @@ namespace MiCalculadora
         private static double Operar(string numero1, string numero2, string operador)
         {
             return Calculadora.Operar(new Operando(numero1), new Operando(numero2), operador);
+        }
+
+        /// <summary>
+        /// recibe parametros y los modifica para presentarlos como string en la lista de la calculadora.
+        /// </summary>
+        /// <param name="num1"></param>
+        /// <param name="num2"></param>
+        /// <param name="operador"></param>
+        /// <returns></returns>
+        private string Mostrar(string num1, string num2, string operador)
+        {
+            if (string.IsNullOrWhiteSpace(operador))
+            {
+                operador = "+";
+            }
+            if (string.IsNullOrWhiteSpace(num1))
+            {
+                num1 = "0";
+            }
+            if (string.IsNullOrWhiteSpace(num2))
+            {
+                num2 = "0";
+            }
+
+            return $"{num1} {operador} {num2}";
         }
 
         /// <summary>
@@ -125,6 +139,27 @@ namespace MiCalculadora
         }
 
         /// <summary>
+        /// pregunta por pantalla si el usuario desea salir, en caso de aceptar cierra la aplicacion.
+        /// </summary>
+        private void Cerrar()
+        {
+            if (MessageBox.Show("Está seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// invoca al metodo Cerrar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Cerrar();
+        }
+
+        /// <summary>
         /// invoca al metodo Cerrar y en caso de que se diga que no a Cerrar, cancela el cierre del formulario.
         /// </summary>
         /// <param name="sender"></param>
@@ -136,41 +171,6 @@ namespace MiCalculadora
             e.Cancel = true;
             
         }
-
-        /// <summary>
-        /// pregunta por pantalla si el usuario desea salir, en caso de aceptar cierra la aplicacion.
-        /// </summary>
-        private void Cerrar()
-        {
-            if (MessageBox.Show("Está seguro de querer salir?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Dispose();
-            }          
-        }
-
-        /// <summary>
-        /// recibe parametros y los modifica para presentarlos como string en la lista de la calculadora.
-        /// </summary>
-        /// <param name="num1"></param>
-        /// <param name="num2"></param>
-        /// <param name="operador"></param>
-        /// <returns></returns>
-        private string Mostrar(string num1, string num2, string operador)
-        {
-            if (string.IsNullOrWhiteSpace(operador))
-            {
-                operador = "+";
-            }
-            if (string.IsNullOrWhiteSpace(num1))
-            {
-                num1 = "0";
-            }
-            if (string.IsNullOrWhiteSpace(num2))
-            {
-                num2 = "0";
-            }
-
-            return $"{num1} {operador} {num2}";
-        }
+       
     }
 }
