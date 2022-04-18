@@ -26,7 +26,7 @@ namespace MiCalculadora
         private void Limpiar()
         {
             this.txtNumero1.Clear();
-            this.cmbOperador.Text = string.Empty;
+            this.cmbOperador.SelectedIndex = 0; 
             this.txtNumero2.Clear();
             this.lblResultado.Text = string.Empty;
             this.btnOperar.Enabled = true;
