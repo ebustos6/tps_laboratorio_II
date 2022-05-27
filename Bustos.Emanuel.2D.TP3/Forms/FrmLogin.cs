@@ -56,10 +56,10 @@ namespace Forms
                 {
                     
                     this.ok.Play();
-                    //FrmMenuPrincipal menu = new FrmMenuPrincipal();
-                    //menu.Show();
-                    //this.Hide();
-                    MessageBox.Show("Exito.", "Ingresar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmMenuPrincipal menu = new FrmMenuPrincipal();
+                    menu.Show();
+                    this.Hide();
+                    
                 }
                 else
                 {
@@ -74,6 +74,12 @@ namespace Forms
                 MessageBox.Show("No debe dejar espacios en blanco.", "Ingresar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Limpiar();
             }
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            this.txtUsuario.Text = "Ema";
+            this.txtPass.Text = "123";
         }
     }
 }
