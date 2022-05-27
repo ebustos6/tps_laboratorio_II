@@ -18,6 +18,8 @@ namespace Forms
         public FrmCalendario()
         {
             InitializeComponent();
+            this.mes = DateTime.Now.Month;
+            this.anio = DateTime.Now.Year;
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -34,8 +36,6 @@ namespace Forms
 
         private void MostrarDias()
         {
-            this.mes = DateTime.Now.Month;
-            this.anio = DateTime.Now.Year;
             this.lblMes.Text = DateTimeFormatInfo.CurrentInfo.GetMonthName(this.mes) + $" {this.anio}";
             int dia = Convert.ToInt32(new DateTime(this.anio,this.mes,1).DayOfWeek.ToString("d")) + 1;
             for(int i = 1; i < dia; i++)
@@ -55,7 +55,6 @@ namespace Forms
 
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
-
             flpDias.Controls.Clear();   
             if (this.mes == 12)
             {
@@ -66,20 +65,22 @@ namespace Forms
             {
                 this.mes++;
             }
-            this.lblMes.Text = DateTimeFormatInfo.CurrentInfo.GetMonthName(this.mes) + $" {this.anio}";
-            int dia = Convert.ToInt32(new DateTime(this.anio, this.mes, 1).DayOfWeek.ToString("d")) + 1;
-            for (int i = 1; i < dia; i++)
-            {
-                UscBlanco ub = new UscBlanco();
-                flpDias.Controls.Add(ub);
+            this.MostrarDias();
+        }
 
-            }
-            for (int i = 1; i <= DateTime.DaysInMonth(anio, mes); i++)
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            flpDias.Controls.Clear();
+            if (this.mes == 1)
             {
-                UscDia uc = new UscDia();
-                uc.AsignarDia(i);
-                flpDias.Controls.Add(uc);
+                this.mes = 12;
+                this.anio--;
             }
+            else
+            {
+                this.mes--;
+            }
+            this.MostrarDias();
         }
     }
 }

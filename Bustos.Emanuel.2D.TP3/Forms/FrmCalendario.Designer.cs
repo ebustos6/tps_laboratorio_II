@@ -77,6 +77,7 @@
             this.btnAnterior.TabIndex = 3;
             this.btnAnterior.Text = "Anterior";
             this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // lblDomingo
             // 
@@ -162,7 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 951);
+            this.ClientSize = new System.Drawing.Size(1075, 961);
             this.ControlBox = false;
             this.Controls.Add(this.lblMes);
             this.Controls.Add(this.lblSabado);
