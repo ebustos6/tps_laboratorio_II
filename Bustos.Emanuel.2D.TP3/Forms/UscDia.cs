@@ -12,6 +12,7 @@ namespace Forms
 {
     public partial class UscDia : UserControl
     {
+        private int dia;
         public UscDia()
         {
             InitializeComponent();
@@ -25,12 +26,19 @@ namespace Forms
         public void AsignarDia(int dia)
         {
             lblDias.Text = dia.ToString();
+            this.dia = dia;
         }
 
         private void UscDia_Click(object sender, EventArgs e)
         {
-            FrmDia dia = new FrmDia();
-            dia.ShowDialog();
+            FrmDia dia = new FrmDia(this.dia);
+            dia.Show();
+            dia.BringToFront();
+        }
+
+        private void lblDias_Click(object sender, EventArgs e)
+        {
+            this.UscDia_Click(sender, e);
         }
     }
 }

@@ -13,13 +13,24 @@ namespace Forms
 {
     public partial class FrmCalendario : Form
     {
-        private int mes;
-        private int anio;
+        private static int mes;
+        private static int anio;
+
         public FrmCalendario()
         {
             InitializeComponent();
-            this.mes = DateTime.Now.Month;
-            this.anio = DateTime.Now.Year;
+            mes = DateTime.Now.Month;
+            anio = DateTime.Now.Year;
+        }
+
+        public static int Mes
+        {
+            get { return mes; }
+        }
+
+        public static int Anio
+        {
+            get { return anio; }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
@@ -36,8 +47,8 @@ namespace Forms
 
         private void MostrarDias()
         {
-            this.lblMes.Text = DateTimeFormatInfo.CurrentInfo.GetMonthName(this.mes) + $" {this.anio}";
-            int dia = Convert.ToInt32(new DateTime(this.anio,this.mes,1).DayOfWeek.ToString("d")) + 1;
+            this.lblMes.Text = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes) + $" {anio}";
+            int dia = Convert.ToInt32(new DateTime(anio,mes,1).DayOfWeek.ToString("d")) + 1;
             for(int i = 1; i < dia; i++)
             {
                 UscBlanco ub = new UscBlanco();
@@ -55,14 +66,14 @@ namespace Forms
 
         private void MesSiguiente()
         {
-            if (this.mes == 12)
+            if (mes == 12)
             {
-                this.mes = 1;
-                this.anio++;
+                mes = 1;
+                anio++;
             }
             else
             {
-                this.mes++;
+                mes++;
             }
         }
 
@@ -75,14 +86,14 @@ namespace Forms
 
         private void MesAnterior()
         {
-            if (this.mes == 1)
+            if (mes == 1)
             {
-                this.mes = 12;
-                this.anio--;
+                mes = 12;
+                anio--;
             }
             else
             {
-                this.mes--;
+                mes--;
             }
         }
 

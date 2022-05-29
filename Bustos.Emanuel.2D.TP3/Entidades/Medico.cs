@@ -26,5 +26,32 @@ namespace Entidades
             this.matricula = matricula;
             this.diasDisponibles = diasDisponibles;
         }
+
+        public int Legajo
+        {
+            get { return this.legajo; }
+        }
+
+        public string Nombre
+        {
+            get { return "Dr. " + this.nombre; }
+        }
+
+        public int Matricula
+        {
+            get { return this.matricula; }
+        }
+
+        public bool EstaDisponible(int dia)
+        {
+            foreach (IDias item in this.diasDisponibles)
+            {
+                if ((int)item == dia)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

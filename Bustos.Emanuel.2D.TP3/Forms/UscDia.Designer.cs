@@ -34,11 +34,13 @@
             // lblDias
             // 
             this.lblDias.AutoSize = true;
-            this.lblDias.Location = new System.Drawing.Point(35, 49);
+            this.lblDias.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDias.Location = new System.Drawing.Point(48, 44);
             this.lblDias.Name = "lblDias";
-            this.lblDias.Size = new System.Drawing.Size(63, 25);
+            this.lblDias.Size = new System.Drawing.Size(47, 38);
             this.lblDias.TabIndex = 0;
-            this.lblDias.Text = "TEXTO";
+            this.lblDias.Text = "00";
+            this.lblDias.Click += new System.EventHandler(this.lblDias_Click);
             // 
             // UscDia
             // 

@@ -70,6 +70,7 @@
             this.btnVerMedicos.TabIndex = 3;
             this.btnVerMedicos.Text = "Ver Médicos Disponibles";
             this.btnVerMedicos.UseVisualStyleBackColor = true;
+            this.btnVerMedicos.Click += new System.EventHandler(this.btnVerMedicos_Click);
             // 
             // FrmDia
             // 
@@ -87,6 +88,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dia";
+            this.Load += new System.EventHandler(this.FrmDia_Load);
             this.ResumeLayout(false);
 
         }

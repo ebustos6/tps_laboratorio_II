@@ -19,8 +19,10 @@ namespace Entidades
 
     public static class Consultorio
     {
-        static List<Usuario> usuarios;
-        static List<string> horarios;
+        private static List<Usuario> usuarios;
+        private static List<string> horarios;
+        private static List<Medico> medicos;
+
 
         static Consultorio()
         {
@@ -28,6 +30,8 @@ namespace Entidades
             AgregarUsuarios();
             horarios = new List<string>();
             AgregarHorarios();
+            medicos = new List<Medico>();
+            AgregarMedicos();
         }
 
         /// <summary>
@@ -79,6 +83,28 @@ namespace Entidades
             horarios.Add("15:30");
             horarios.Add("16:00");
             horarios.Add("16:30");
+        }
+
+        private static void AgregarMedicos()
+        {
+            medicos.Add(new Medico("Tangalanga", 11283848, new List<IDias>() { IDias.Lunes, IDias.Martes }));
+            medicos.Add(new Medico("Bilardo", 10303456, new List<IDias>() { IDias.Jueves, IDias.Viernes, IDias.Sabado }));
+            medicos.Add(new Medico("Lotocki", 18373466, new List<IDias>() { IDias.Lunes, IDias.Martes, IDias.Miercoles, IDias.Jueves, IDias.Viernes }));
+            medicos.Add(new Medico("Houssay", 06041991, new List<IDias>() { IDias.Miercoles, IDias.Sabado }));
+        }
+
+        public static List<Medico> ListarMedicosPorDia(int dia)
+        {
+            List<Medico> medicosDisponibles = new List<Medico>();
+            foreach (Medico dr in medicos)
+            {
+                if (dr.EstaDisponible(dia))
+                {
+                    medicosDisponibles.Add(dr);
+                }
+            }
+
+            return medicosDisponibles;
         }
     }
 }

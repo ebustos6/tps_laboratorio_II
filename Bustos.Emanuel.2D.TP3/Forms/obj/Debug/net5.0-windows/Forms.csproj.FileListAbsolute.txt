@@ -25,3 +25,4 @@ C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\For
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.UscDia.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.UscBlanco.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmDia.resources
+C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmListarMedicos.resources
