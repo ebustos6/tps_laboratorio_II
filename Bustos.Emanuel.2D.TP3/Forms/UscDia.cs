@@ -26,5 +26,11 @@ namespace Forms
         {
             lblDias.Text = dia.ToString();
         }
+
+        private void UscDia_Click(object sender, EventArgs e)
+        {
+            FrmDia dia = new FrmDia();
+            dia.ShowDialog();
+        }
     }
 }

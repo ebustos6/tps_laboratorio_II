@@ -49,6 +49,7 @@
             this.Name = "UscDia";
             this.Size = new System.Drawing.Size(142, 126);
             this.Load += new System.EventHandler(this.UscDia_Load);
+            this.Click += new System.EventHandler(this.UscDia_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

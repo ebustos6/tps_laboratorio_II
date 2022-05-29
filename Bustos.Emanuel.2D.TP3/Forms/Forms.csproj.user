@@ -4,6 +4,9 @@
     <Compile Update="FrmCalendario.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

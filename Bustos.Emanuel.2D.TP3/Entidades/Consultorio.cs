@@ -6,15 +6,28 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
+    public enum IDias
+    {
+        Domingo,
+        Lunes,
+        Martes,
+        Miercoles,
+        Jueves,
+        Viernes,
+        Sabado
+    }
+
     public static class Consultorio
     {
         static List<Usuario> usuarios;
-        static Usuario usuarioActivo;
+        static List<string> horarios;
 
         static Consultorio()
         {
             usuarios = new List<Usuario>();
             AgregarUsuarios();
+            horarios = new List<string>();
+            AgregarHorarios();
         }
 
         /// <summary>
@@ -42,13 +55,30 @@ namespace Entidades
             {
                 if (u.Nombre == usuario && u.ValidarPass(pass))
                 {
-                    usuarioActivo = u;
                     return true;
                 }
             }
             return false;
         }
 
-
+        private static void AgregarHorarios()
+        {
+            horarios.Add("9:00");
+            horarios.Add("9:30");
+            horarios.Add("10:00");
+            horarios.Add("10:30");
+            horarios.Add("11:00");
+            horarios.Add("11:30");
+            horarios.Add("12:00");
+            horarios.Add("12:30");
+            horarios.Add("13:00");
+            horarios.Add("13:30");
+            horarios.Add("14:00");
+            horarios.Add("14:30");
+            horarios.Add("15:00");
+            horarios.Add("15:30");
+            horarios.Add("16:00");
+            horarios.Add("16:30");
+        }
     }
 }

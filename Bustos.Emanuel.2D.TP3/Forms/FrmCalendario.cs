@@ -53,9 +53,8 @@ namespace Forms
 
         }
 
-        private void btnSiguiente_Click(object sender, EventArgs e)
+        private void MesSiguiente()
         {
-            flpDias.Controls.Clear();   
             if (this.mes == 12)
             {
                 this.mes = 1;
@@ -65,12 +64,17 @@ namespace Forms
             {
                 this.mes++;
             }
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            flpDias.Controls.Clear();
+            this.MesSiguiente();
             this.MostrarDias();
         }
 
-        private void btnAnterior_Click(object sender, EventArgs e)
+        private void MesAnterior()
         {
-            flpDias.Controls.Clear();
             if (this.mes == 1)
             {
                 this.mes = 12;
@@ -80,6 +84,12 @@ namespace Forms
             {
                 this.mes--;
             }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            flpDias.Controls.Clear();
+            this.MesAnterior(); 
             this.MostrarDias();
         }
     }
