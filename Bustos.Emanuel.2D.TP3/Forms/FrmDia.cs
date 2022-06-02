@@ -33,7 +33,7 @@ namespace Forms
         {
             //DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes,this.dia);
             //MessageBox.Show($"{((int)aux.DayOfWeek)} = {(int)Entidades.IDias.Martes}");
-            FrmListarMedicos m = new FrmListarMedicos(this.dia);
+            FrmListar m = new FrmListar(this.dia, 1);
             m.Show();
             this.Close();
         }

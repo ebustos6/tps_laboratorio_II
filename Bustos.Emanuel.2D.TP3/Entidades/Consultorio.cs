@@ -22,7 +22,8 @@ namespace Entidades
         private static List<Usuario> usuarios;
         private static List<string> horarios;
         private static List<Medico> medicos;
-
+        private static List<Turno> turnosAtendidos;
+        private static List<Paciente> pacientes;
 
         static Consultorio()
         {
@@ -32,6 +33,14 @@ namespace Entidades
             AgregarHorarios();
             medicos = new List<Medico>();
             AgregarMedicos();
+            turnosAtendidos = new List<Turno>();
+            pacientes = new List<Paciente>();
+            AgregarPacientes();
+        }
+
+        public static List<Paciente> Pacientes
+        {
+            get { return pacientes; }
         }
 
         /// <summary>
@@ -105,6 +114,14 @@ namespace Entidades
             }
 
             return medicosDisponibles;
+        }
+
+        private static void AgregarPacientes()
+        {
+            pacientes.Add(new Paciente("Ilda", "Zolezzi", 000012345));
+            pacientes.Add(new Paciente("Pepe", "Rico", 000012312));
+            pacientes.Add(new Paciente("Nirvana", "Olivera", 000012444));
+            pacientes.Add(new Paciente("Gusti", "Gallardo", 000012445));
         }
     }
 }

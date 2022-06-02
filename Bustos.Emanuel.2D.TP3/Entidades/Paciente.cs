@@ -18,6 +18,32 @@ namespace Entidades
             this.nombre = nombre;
             this.apellido = apellido;
             this.nroObraSocial = nroObraSocial;
+            this.turno = null;
+        }
+
+        public string Nombre
+        {
+            get { return nombre; }
+        }
+
+        public string Apellido 
+        { 
+            get { return apellido; }
+        }
+
+        public int NroObraSocial 
+        { 
+            get { return nroObraSocial; } 
+        }
+
+        public bool AsignarTurno(Turno turno)
+        {
+            if (this.turno is null && turno is not null)
+            {
+                this.turno = turno;
+                return true;
+            }
+            return false;
         }
     }
 }

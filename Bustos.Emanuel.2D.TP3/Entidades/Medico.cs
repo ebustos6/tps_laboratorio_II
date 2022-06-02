@@ -42,6 +42,11 @@ namespace Entidades
             get { return this.matricula; }
         }
 
+        public List<IDias> DiasDisponibles
+        {
+            get { return this.diasDisponibles; }
+        }
+
         public bool EstaDisponible(int dia)
         {
             foreach (IDias item in this.diasDisponibles)
@@ -52,6 +57,11 @@ namespace Entidades
                 }
             }
             return false;
+        }
+
+        public override string ToString()
+        {
+            return this.Nombre;
         }
     }
 }

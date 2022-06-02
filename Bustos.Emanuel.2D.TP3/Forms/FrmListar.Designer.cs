@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class FrmListarMedicos
+    partial class FrmListar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvMedicos = new System.Windows.Forms.DataGridView();
+            this.dgvListado = new System.Windows.Forms.DataGridView();
             this.btnVolver = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvMedicos
+            // dgvListado
             // 
-            this.dgvMedicos.AllowUserToAddRows = false;
-            this.dgvMedicos.AllowUserToDeleteRows = false;
-            this.dgvMedicos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMedicos.Location = new System.Drawing.Point(12, 12);
-            this.dgvMedicos.MultiSelect = false;
-            this.dgvMedicos.Name = "dgvMedicos";
-            this.dgvMedicos.ReadOnly = true;
-            this.dgvMedicos.RowHeadersWidth = 62;
-            this.dgvMedicos.RowTemplate.Height = 33;
-            this.dgvMedicos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMedicos.Size = new System.Drawing.Size(580, 357);
-            this.dgvMedicos.TabIndex = 0;
+            this.dgvListado.AllowUserToAddRows = false;
+            this.dgvListado.AllowUserToDeleteRows = false;
+            this.dgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListado.Location = new System.Drawing.Point(12, 12);
+            this.dgvListado.MultiSelect = false;
+            this.dgvListado.Name = "dgvListado";
+            this.dgvListado.ReadOnly = true;
+            this.dgvListado.RowHeadersWidth = 62;
+            this.dgvListado.RowTemplate.Height = 33;
+            this.dgvListado.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvListado.Size = new System.Drawing.Size(580, 357);
+            this.dgvListado.TabIndex = 0;
             // 
             // btnVolver
             // 
@@ -58,29 +58,29 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
-            // FrmListarMedicos
+            // FrmListar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 483);
             this.ControlBox = false;
             this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.dgvMedicos);
+            this.Controls.Add(this.dgvListado);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmListarMedicos";
+            this.Name = "FrmListar";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Lista de Medicos";
-            this.Load += new System.EventHandler(this.FrmListarMedicos_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMedicos)).EndInit();
+            this.Text = "Lista";
+            this.Load += new System.EventHandler(this.FrmListar_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvMedicos;
+        private System.Windows.Forms.DataGridView dgvListado;
         private System.Windows.Forms.Button btnVolver;
     }
 }
