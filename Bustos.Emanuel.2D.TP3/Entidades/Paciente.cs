@@ -11,14 +11,12 @@ namespace Entidades
         private string nombre;
         private string apellido;
         private int nroObraSocial;
-        private Turno turno;
 
         public Paciente(string nombre, string apellido, int nroObraSocial)
         {
             this.nombre = nombre;
             this.apellido = apellido;
             this.nroObraSocial = nroObraSocial;
-            this.turno = null;
         }
 
         public string Nombre
@@ -36,14 +34,5 @@ namespace Entidades
             get { return nroObraSocial; } 
         }
 
-        public bool AsignarTurno(Turno turno)
-        {
-            if (this.turno is null && turno is not null)
-            {
-                this.turno = turno;
-                return true;
-            }
-            return false;
-        }
     }
 }

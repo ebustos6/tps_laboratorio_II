@@ -39,8 +39,8 @@ namespace Forms
             switch (tipoLista)
             {
                 case 1:
-                    this.Text = $"Medicos disponibles para el {this.dia}/{FrmCalendario.Mes}/{FrmCalendario.Anio}";
                     DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                    this.Text = $"Medicos disponibles para el {aux.Day}/{aux.Month}/{aux.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarMedicosPorDia((int)aux.DayOfWeek);
                     break;
 

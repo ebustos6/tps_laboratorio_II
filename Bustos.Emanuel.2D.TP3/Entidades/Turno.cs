@@ -39,7 +39,7 @@ namespace Entidades
 
         public int Paciente
         {
-            get { return this.medico; }
+            get { return this.paciente; }
         }
 
         public int Dia 
@@ -61,5 +61,7 @@ namespace Entidades
         {
             get { return this.horario; }
         }
+
+
     }
 }

@@ -37,5 +37,12 @@ namespace Forms
             m.Show();
             this.Close();
         }
+
+        private void btnAgendar_Click(object sender, EventArgs e)
+        {
+            FrmTurno t = new FrmTurno(this.dia);
+            t.Show();
+            this.Close();
+        }
     }
 }

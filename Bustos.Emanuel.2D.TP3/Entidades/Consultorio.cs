@@ -22,7 +22,7 @@ namespace Entidades
         private static List<Usuario> usuarios;
         private static List<string> horarios;
         private static List<Medico> medicos;
-        private static List<Turno> turnosAtendidos;
+        private static List<Turno> turnos;
         private static List<Paciente> pacientes;
 
         static Consultorio()
@@ -33,9 +33,14 @@ namespace Entidades
             AgregarHorarios();
             medicos = new List<Medico>();
             AgregarMedicos();
-            turnosAtendidos = new List<Turno>();
+            turnos = new List<Turno>();
             pacientes = new List<Paciente>();
             AgregarPacientes();
+        }
+
+        public static List<string> Horarios
+        {
+            get { return horarios; }
         }
 
         public static List<Paciente> Pacientes
@@ -93,6 +98,21 @@ namespace Entidades
             horarios.Add("16:00");
             horarios.Add("16:30");
         }
+
+        //Buscar la forma de devolver una lista con los horarios que NO estan contenidos dentro de un turno
+        public static List<string> HorariosDisponibles(DateTime dia)
+        {
+            List<string> horarios = new List<string>();
+            List<string> horariosOcupados = new List<string>();
+            foreach (Turno item in turnos)
+            {
+
+            }
+
+            return horarios;
+        }
+
+
 
         private static void AgregarMedicos()
         {

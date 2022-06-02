@@ -42,6 +42,7 @@
             this.btnAgendar.TabIndex = 0;
             this.btnAgendar.Text = "Agendar Turno";
             this.btnAgendar.UseVisualStyleBackColor = true;
+            this.btnAgendar.Click += new System.EventHandler(this.btnAgendar_Click);
             // 
             // btnVerTurnos
             // 
