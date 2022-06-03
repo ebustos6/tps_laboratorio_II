@@ -34,6 +34,7 @@ namespace Entidades
             medicos = new List<Medico>();
             AgregarMedicos();
             turnos = new List<Turno>();
+            AgregarTurnos();
             pacientes = new List<Paciente>();
             AgregarPacientes();
         }
@@ -100,16 +101,45 @@ namespace Entidades
         }
 
         //Buscar la forma de devolver una lista con los horarios que NO estan contenidos dentro de un turno
-        public static List<string> HorariosDisponibles(DateTime dia)
+        private static List<string> HorariosOcupados(DateTime dia, int medico)
         {
-            List<string> horarios = new List<string>();
-            List<string> horariosOcupados = new List<string>();
+            List<string> ocupados = new List<string>();
             foreach (Turno item in turnos)
             {
+                if (item.Medico == medico && item.Fecha == dia)
+                {
+                    ocupados.Add(item.Horario);
+                }
 
             }
 
-            return horarios;
+            return ocupados;
+        }
+        
+        private static bool EstaOcupado(string horario, DateTime dia, int medico)
+        {
+            foreach (string ocupado in HorariosOcupados(dia, medico))
+            {
+                if (horario == ocupado)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        public static List<string> HorariosDisponibles(DateTime dia, int medico)
+        {
+            List<string> horariosDisponibles = new List<string>();
+            foreach (string horario in horarios)
+            {
+                if (!EstaOcupado(horario, dia, medico))
+                {
+                    horariosDisponibles.Add(horario);
+                }
+            }
+
+            return horariosDisponibles;
         }
 
 
@@ -120,6 +150,18 @@ namespace Entidades
             medicos.Add(new Medico("Bilardo", 10303456, new List<IDias>() { IDias.Jueves, IDias.Viernes, IDias.Sabado }));
             medicos.Add(new Medico("Lotocki", 18373466, new List<IDias>() { IDias.Lunes, IDias.Martes, IDias.Miercoles, IDias.Jueves, IDias.Viernes }));
             medicos.Add(new Medico("Houssay", 06041991, new List<IDias>() { IDias.Miercoles, IDias.Sabado }));
+        }
+
+        public static Medico BuscarMedicoPorMatricula(int matricula)
+        {
+            foreach (Medico dr in medicos)
+            {
+                if (dr.Matricula == matricula)
+                {
+                    return dr;
+                }
+            }
+            return null;
         }
 
         public static List<Medico> ListarMedicosPorDia(int dia)
@@ -135,6 +177,40 @@ namespace Entidades
 
             return medicosDisponibles;
         }
+
+        public static void AgregarTurnos()
+        {
+            turnos.Add(new Turno(11283848, 000012345, new DateTime(2022, 6, 6), "9:30"));
+            turnos.Add(new Turno(11283848, 000012312, new DateTime(2022, 6, 7), "10:30"));
+            turnos.Add(new Turno(10303456, 000012445, new DateTime(2022, 6, 9), "10:30"));
+            turnos.Add(new Turno(10303456, 000012312, new DateTime(2022, 6, 10), "11:00"));
+            turnos.Add(new Turno(18373466, 000012445, new DateTime(2022, 6, 8), "10:30"));
+            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 8), "12:30"));
+            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 11), "10:00"));
+        }
+
+        public static List<Turno> ListarTurnosPorFecha(DateTime dia)
+        {
+            List<Turno> turnosDelDia = new List<Turno>();
+
+            foreach (Turno item in turnos)
+            {
+                if (item.Fecha == dia)
+                {
+                    turnosDelDia.Add(item);
+                }
+            }
+
+            return turnosDelDia;
+        }
+
+        //falta hacer validaciones!
+        public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
+        {
+            turnos.Add(new Turno(medico, paciente, fecha, horario));
+            return true;
+        }
+
 
         private static void AgregarPacientes()
         {

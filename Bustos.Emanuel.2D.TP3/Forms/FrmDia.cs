@@ -44,5 +44,12 @@ namespace Forms
             t.Show();
             this.Close();
         }
+
+        private void btnVerTurnos_Click(object sender, EventArgs e)
+        {
+            FrmListar t = new FrmListar(this.dia, 2);
+            t.Show();
+            this.Close();
+        }
     }
 }

@@ -36,17 +36,20 @@ namespace Forms
 
         private void CargarDataGrid(int tipoLista)
         {
+            DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
             switch (tipoLista)
             {
                 case 1:
-                    DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
                     this.Text = $"Medicos disponibles para el {aux.Day}/{aux.Month}/{aux.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarMedicosPorDia((int)aux.DayOfWeek);
                     break;
 
                 case 2:
-                    this.Text = "Turnos";
-                    //listar turnos
+                    //ver la forma de mostrar los nombres del medico y del paciente
+                    this.Text = $"Turnos {aux.Day}/{aux.Month}/{aux.Year}";
+                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux);
+                    this.dgvListado.Columns[0].Visible = false;
+                    this.dgvListado.Columns[3].Visible = false;
                     break;
 
                 case 3:

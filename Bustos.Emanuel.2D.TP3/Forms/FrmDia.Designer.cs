@@ -52,6 +52,7 @@
             this.btnVerTurnos.TabIndex = 1;
             this.btnVerTurnos.Text = "Ver Turnos Agendados";
             this.btnVerTurnos.UseVisualStyleBackColor = true;
+            this.btnVerTurnos.Click += new System.EventHandler(this.btnVerTurnos_Click);
             // 
             // btnVolver
             // 

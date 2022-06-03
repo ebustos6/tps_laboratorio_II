@@ -12,24 +12,26 @@ namespace Entidades
         private int idTurno;
         private int medico;
         private int paciente;
-        private int dia;
-        private int mes;
-        private int anio;
+        private DateTime fecha;
         private string horario;
 
         static Turno()
         {
             id = 1;
         }
-        public Turno(int medico, int paciente, int dia, int mes, int anio, string horario)
+        public Turno(int medico, int paciente, DateTime fecha, string horario)
         {
             this.idTurno = id++;
             this.medico = medico;
             this.paciente = paciente;
-            this.dia = dia;
+            this.fecha = fecha;
             this.horario = horario;
-            this.mes = mes;
-            this.anio = anio;
+
+        }
+
+        public int Id
+        {
+            get { return this.idTurno; }
         }
 
         public int Medico 
@@ -42,19 +44,9 @@ namespace Entidades
             get { return this.paciente; }
         }
 
-        public int Dia 
-        { 
-            get { return this.dia; } 
-        }
-
-        public int Mes
+        public DateTime Fecha
         {
-            get { return this.mes; }
-        }
-
-        public int Anio
-        {
-            get { return this.anio; }
+            get { return this.fecha; }
         }
 
         public string Horario
