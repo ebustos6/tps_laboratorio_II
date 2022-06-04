@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(501, 229);
+            this.ClientSize = new System.Drawing.Size(506, 232);
             this.ControlBox = false;
             this.Controls.Add(this.btnVerMedicos);
             this.Controls.Add(this.btnVolver);

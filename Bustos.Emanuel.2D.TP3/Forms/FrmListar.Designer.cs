@@ -30,6 +30,7 @@
         {
             this.dgvListado = new System.Windows.Forms.DataGridView();
             this.btnVolver = new System.Windows.Forms.Button();
+            this.btnCertificado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,12 +59,23 @@
             this.btnVolver.UseVisualStyleBackColor = true;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // btnCertificado
+            // 
+            this.btnCertificado.Location = new System.Drawing.Point(170, 407);
+            this.btnCertificado.Name = "btnCertificado";
+            this.btnCertificado.Size = new System.Drawing.Size(203, 64);
+            this.btnCertificado.TabIndex = 2;
+            this.btnCertificado.Text = "Descargar Certificado";
+            this.btnCertificado.UseVisualStyleBackColor = true;
+            this.btnCertificado.Click += new System.EventHandler(this.btnCertificado_Click);
+            // 
             // FrmListar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 483);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCertificado);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.dgvListado);
             this.MaximizeBox = false;
@@ -82,5 +94,6 @@
 
         private System.Windows.Forms.DataGridView dgvListado;
         private System.Windows.Forms.Button btnVolver;
+        private System.Windows.Forms.Button btnCertificado;
     }
 }

@@ -62,5 +62,23 @@ namespace Forms
             }
             
         }
+
+        private void btnCertificado_Click(object sender, EventArgs e)
+        {
+            int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+            int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
+            DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+            string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+
+            if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+            {
+                Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), aux, horario);
+                MessageBox.Show("El certificado ha sido emitido con exito.");
+            }
+            else
+            {
+                MessageBox.Show("Error.");
+            }
+        }
     }
 }

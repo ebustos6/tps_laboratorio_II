@@ -219,5 +219,17 @@ namespace Entidades
             pacientes.Add(new Paciente("Nirvana", "Olivera", 000012444));
             pacientes.Add(new Paciente("Gusti", "Gallardo", 000012445));
         }
+
+        public static Paciente BuscarPacientePorOS(int obraSocial)
+        {
+            foreach (Paciente p in pacientes)
+            {
+                if (p.NroObraSocial == obraSocial)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
     }
 }
