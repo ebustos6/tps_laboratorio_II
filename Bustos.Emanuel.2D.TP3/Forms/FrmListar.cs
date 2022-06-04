@@ -31,6 +31,8 @@ namespace Forms
 
         private void FrmListar_Load(object sender, EventArgs e)
         {
+            this.btnCertificado.Enabled = false;
+            this.btnCertificado.Hide();
             this.CargarDataGrid(this.tipoLista);
         }
 
@@ -46,6 +48,8 @@ namespace Forms
 
                 case 2:
                     //ver la forma de mostrar los nombres del medico y del paciente
+                    this.btnCertificado.Enabled = true;
+                    this.btnCertificado.Show();
                     this.Text = $"Turnos {aux.Day}/{aux.Month}/{aux.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux);
                     this.dgvListado.Columns[0].Visible = false;
