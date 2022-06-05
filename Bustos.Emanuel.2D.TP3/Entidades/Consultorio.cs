@@ -31,15 +31,15 @@ namespace Entidades
             AgregarUsuarios();
             horarios = new List<string>();
             AgregarHorarios();
-            medicos = new List<Medico>();
-            AgregarMedicos();
-            SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
-            turnos = new List<Turno>();
-            AgregarTurnos();
-            SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
-            pacientes = new List<Paciente>();
-            AgregarPacientes();
-            SerializacionXml<List<Paciente>>.Serializar(pacientes, "Pacientes");
+            medicos = SerializacionXml<List<Medico>>.Deserializar("Medicos");
+            //AgregarMedicos();
+            //SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
+            turnos = SerializacionXml<List<Turno>>.Deserializar("Turnos");
+            //AgregarTurnos();
+            //SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
+            pacientes = SerializacionXml<List<Paciente>>.Deserializar("Pacientes");
+            //AgregarPacientes();
+            //SerializacionXml<List<Paciente>>.Serializar(pacientes, "Pacientes");
         }
 
         public static List<string> Horarios
