@@ -24,9 +24,25 @@ namespace Forms
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            FrmDia dia = new FrmDia(this.dia);
-            dia.Show();
-            this.Close();
+            if (tipoLista == 3)
+            {
+                FrmABM p = new FrmABM(false);
+                p.Show();
+                this.Close();
+            }
+            else if (tipoLista == 4)
+            {
+                FrmABM m = new FrmABM(true);
+                m.Show();
+                this.Close();
+            }
+            else
+            {
+                FrmDia dia = new FrmDia(this.dia);
+                dia.Show();
+                this.Close();
+            }
+            
         }
 
         private void FrmListar_Load(object sender, EventArgs e)
@@ -38,20 +54,22 @@ namespace Forms
 
         private void CargarDataGrid(int tipoLista)
         {
-            DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+            
             switch (tipoLista)
             {
                 case 1:
+                    DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
                     this.Text = $"Medicos disponibles para el {aux.Day}/{aux.Month}/{aux.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarMedicosPorDia((int)aux.DayOfWeek);
                     break;
 
                 case 2:
+                    DateTime aux2 = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
                     //ver la forma de mostrar los nombres del medico y del paciente
                     this.btnCertificado.Enabled = true;
                     this.btnCertificado.Show();
-                    this.Text = $"Turnos {aux.Day}/{aux.Month}/{aux.Year}";
-                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux);
+                    this.Text = $"Turnos {aux2.Day}/{aux2.Month}/{aux2.Year}";
+                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux2);
                     this.dgvListado.Columns[0].Visible = false;
                     this.dgvListado.Columns[3].Visible = false;
                     break;
@@ -59,6 +77,11 @@ namespace Forms
                 case 3:
                     this.Text = "Pacientes";
                     this.dgvListado.DataSource = Consultorio.Pacientes;
+                    break;
+
+                case 4:
+                    this.Text = "Medicos";
+                    this.dgvListado.DataSource = Consultorio.Medicos;
                     break;
 
                 default:

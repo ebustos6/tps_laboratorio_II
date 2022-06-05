@@ -8,16 +8,10 @@ namespace Entidades
 {
     public class Medico
     {
-        private static int id;
         private int legajo;
         private string nombre;
         private int matricula;
         private List<IDias> diasDisponibles;
-
-        static Medico()
-        {
-            id = 10000;
-        }
 
         public Medico()
         {
@@ -26,7 +20,7 @@ namespace Entidades
 
         public Medico(string nombre, int matricula, List<IDias> diasDisponibles)
         {
-            this.legajo = id++;
+            this.legajo = Consultorio.GenerarSiguienteIdMedico();
             this.nombre = nombre;
             this.matricula = matricula;
             this.diasDisponibles = diasDisponibles;

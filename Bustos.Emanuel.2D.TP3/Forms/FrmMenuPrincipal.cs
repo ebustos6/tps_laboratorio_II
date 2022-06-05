@@ -28,5 +28,19 @@ namespace Forms
             c.Show();
             this.Close();
         }
+
+        private void btnMedicos_Click(object sender, EventArgs e)
+        {
+            FrmABM a = new FrmABM(true);
+            a.Show();
+            this.Close();
+        }
+
+        private void btnPacientes_Click(object sender, EventArgs e)
+        {
+            FrmABM a = new FrmABM(false);
+            a.Show();
+            this.Close();
+        }
     }
 }

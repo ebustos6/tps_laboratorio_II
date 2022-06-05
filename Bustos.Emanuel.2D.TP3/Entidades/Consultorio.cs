@@ -47,6 +47,11 @@ namespace Entidades
             get { return horarios; }
         }
 
+        public static List<Medico> Medicos
+        {
+            get { return medicos; }
+        }
+
         public static List<Paciente> Pacientes
         {
             get { return pacientes; }
@@ -154,6 +159,21 @@ namespace Entidades
             medicos.Add(new Medico("Houssay", 06041991, new List<IDias>() { IDias.Miercoles, IDias.Sabado }));
         }
 
+        public static int GenerarSiguienteIdMedico()
+        {
+            int id = 10000;
+
+            foreach (Medico dr in medicos)
+            {
+                if (dr.Legajo > id)
+                {
+                    id = dr.Legajo;
+                }
+            }
+
+            return id + 1;
+        }
+
         public static Medico BuscarMedicoPorMatricula(int matricula)
         {
             foreach (Medico dr in medicos)
@@ -178,6 +198,21 @@ namespace Entidades
             }
 
             return medicosDisponibles;
+        }
+
+        public static int GenerarSiguienteIdTurno()
+        {
+            int id = 0;
+
+            foreach (Turno item in turnos)
+            {
+                if (item.IdTurno > id)
+                {
+                    id = item.IdTurno;
+                }
+            }
+
+            return id + 1;
         }
 
         public static void AgregarTurnos()
@@ -209,8 +244,13 @@ namespace Entidades
         //falta hacer validaciones!
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
         {
-            turnos.Add(new Turno(medico, paciente, fecha, horario));
-            return true;
+            if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))
+            {
+                turnos.Add(new Turno(medico, paciente, fecha, horario));
+                SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
+                return true;
+            }
+            return false;
         }
 
 

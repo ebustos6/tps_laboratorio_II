@@ -49,4 +49,11 @@
     <Fecha>2022-06-11T00:00:00</Fecha>
     <Horario>10:00</Horario>
   </Turno>
+  <Turno>
+    <IdTurno>8</IdTurno>
+    <Medico>6041991</Medico>
+    <Paciente>12312</Paciente>
+    <Fecha>2022-06-08T00:00:00</Fecha>
+    <Horario>16:30</Horario>
+  </Turno>
 </ArrayOfTurno>

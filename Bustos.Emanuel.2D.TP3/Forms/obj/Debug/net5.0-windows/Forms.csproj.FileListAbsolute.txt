@@ -27,3 +27,4 @@ C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\For
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmDia.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmListar.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmTurno.resources
+C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP3\Forms\obj\Debug\net5.0-windows\Forms.FrmABM.resources

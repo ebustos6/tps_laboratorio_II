@@ -8,17 +8,11 @@ namespace Entidades
 {
     public class Turno
     {
-        private static int id;
         private int idTurno;
         private int medico;
         private int paciente;
         private DateTime fecha;
         private string horario;
-
-        static Turno()
-        {
-            id = 1;
-        }
 
         public Turno()
         {
@@ -27,7 +21,7 @@ namespace Entidades
 
         public Turno(int medico, int paciente, DateTime fecha, string horario)
         {
-            this.idTurno = id++;
+            this.idTurno = Consultorio.GenerarSiguienteIdTurno();
             this.medico = medico;
             this.paciente = paciente;
             this.fecha = fecha;
@@ -64,7 +58,6 @@ namespace Entidades
             get { return this.horario; }
             set { this.horario = value; }
         }
-
 
     }
 }
