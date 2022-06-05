@@ -33,10 +33,13 @@ namespace Entidades
             AgregarHorarios();
             medicos = new List<Medico>();
             AgregarMedicos();
+            SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
             turnos = new List<Turno>();
             AgregarTurnos();
+            SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
             pacientes = new List<Paciente>();
             AgregarPacientes();
+            SerializacionXml<List<Paciente>>.Serializar(pacientes, "Pacientes");
         }
 
         public static List<string> Horarios
@@ -100,7 +103,6 @@ namespace Entidades
             horarios.Add("16:30");
         }
 
-        //Buscar la forma de devolver una lista con los horarios que NO estan contenidos dentro de un turno
         private static List<string> HorariosOcupados(DateTime dia, int medico)
         {
             List<string> ocupados = new List<string>();

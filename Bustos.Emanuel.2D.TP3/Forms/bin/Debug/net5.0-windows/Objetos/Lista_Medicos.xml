@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfMedico xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Medico>
+    <Legajo>10000</Legajo>
+    <Nombre>Tangalanga</Nombre>
+    <Matricula>11283848</Matricula>
+    <DiasDisponibles>
+      <IDias>Lunes</IDias>
+      <IDias>Martes</IDias>
+    </DiasDisponibles>
+  </Medico>
+  <Medico>
+    <Legajo>10001</Legajo>
+    <Nombre>Bilardo</Nombre>
+    <Matricula>10303456</Matricula>
+    <DiasDisponibles>
+      <IDias>Jueves</IDias>
+      <IDias>Viernes</IDias>
+      <IDias>Sabado</IDias>
+    </DiasDisponibles>
+  </Medico>
+  <Medico>
+    <Legajo>10002</Legajo>
+    <Nombre>Lotocki</Nombre>
+    <Matricula>18373466</Matricula>
+    <DiasDisponibles>
+      <IDias>Lunes</IDias>
+      <IDias>Martes</IDias>
+      <IDias>Miercoles</IDias>
+      <IDias>Jueves</IDias>
+      <IDias>Viernes</IDias>
+    </DiasDisponibles>
+  </Medico>
+  <Medico>
+    <Legajo>10003</Legajo>
+    <Nombre>Houssay</Nombre>
+    <Matricula>6041991</Matricula>
+    <DiasDisponibles>
+      <IDias>Miercoles</IDias>
+      <IDias>Sabado</IDias>
+    </DiasDisponibles>
+  </Medico>
+</ArrayOfMedico>

@@ -8,7 +8,7 @@ namespace Entidades
 {
     public class Medico
     {
-        static int id;
+        private static int id;
         private int legajo;
         private string nombre;
         private int matricula;
@@ -17,6 +17,11 @@ namespace Entidades
         static Medico()
         {
             id = 10000;
+        }
+
+        public Medico()
+        {
+
         }
 
         public Medico(string nombre, int matricula, List<IDias> diasDisponibles)
@@ -30,21 +35,25 @@ namespace Entidades
         public int Legajo
         {
             get { return this.legajo; }
+            set { this.legajo = value; }
         }
 
         public string Nombre
         {
-            get { return "Dr. " + this.nombre; }
+            get { return this.nombre; }
+            set { this.nombre = value; }
         }
 
         public int Matricula
         {
             get { return this.matricula; }
+            set { this.matricula = value; }
         }
 
         public List<IDias> DiasDisponibles
         {
             get { return this.diasDisponibles; }
+            set { this.diasDisponibles = value; }
         }
 
         public bool EstaDisponible(int dia)
@@ -61,7 +70,7 @@ namespace Entidades
 
         public override string ToString()
         {
-            return this.Nombre;
+            return "Dr. " + this.Nombre;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Entidades
                 using (StreamWriter writer = new StreamWriter(nombreArchivo))
                 {
                     writer.WriteLine($"El paciente {paciente.Apellido}, {paciente.Nombre} cuyo nro de obra social es: {paciente.NroObraSocial}");
-                    writer.WriteLine($"fue atendido en esta institucion por el {medico.Nombre}, el dia {fecha.Day}/{fecha.Month}/{fecha.Year} a las {horario}hs.");
+                    writer.WriteLine($"fue atendido en esta institucion por el Dr. {medico.Nombre}, el dia {fecha.Day}/{fecha.Month}/{fecha.Year} a las {horario}hs.");
                     writer.WriteLine("\n\n\n\n\nSaluda Atte.\nFirma del profesional.");
                 }
             }

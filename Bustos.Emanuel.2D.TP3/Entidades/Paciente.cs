@@ -12,6 +12,11 @@ namespace Entidades
         private string apellido;
         private int nroObraSocial;
 
+        public Paciente()
+        {
+
+        }
+
         public Paciente(string nombre, string apellido, int nroObraSocial)
         {
             this.nombre = nombre;
@@ -22,16 +27,19 @@ namespace Entidades
         public string Nombre
         {
             get { return nombre; }
+            set { nombre = value; }
         }
 
         public string Apellido 
         { 
             get { return apellido; }
+            set { apellido = value; }
         }
 
         public int NroObraSocial 
         { 
-            get { return nroObraSocial; } 
+            get { return nroObraSocial; }
+            set { nroObraSocial = value; }
         }
 
     }
