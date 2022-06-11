@@ -40,4 +40,14 @@
       <IDias>Sabado</IDias>
     </DiasDisponibles>
   </Medico>
+  <Medico>
+    <Legajo>10004</Legajo>
+    <Nombre>Socolinsky</Nombre>
+    <Matricula>11662299</Matricula>
+    <DiasDisponibles>
+      <IDias>Martes</IDias>
+      <IDias>Miercoles</IDias>
+      <IDias>Jueves</IDias>
+    </DiasDisponibles>
+  </Medico>
 </ArrayOfMedico>

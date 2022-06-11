@@ -200,6 +200,28 @@ namespace Entidades
             return medicosDisponibles;
         }
 
+        public static bool CrearMedico(string nombre, int matricula, List<IDias> diasDisponibles)
+        {
+            if (nombre is not null && BuscarMedicoPorMatricula(matricula) is null && diasDisponibles is not null)
+            {
+                medicos.Add(new Medico(nombre, matricula, diasDisponibles));
+                SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
+                return true;
+            }
+            return false;
+        }
+
+        public static void AgregarTurnos()
+        {
+            turnos.Add(new Turno(11283848, 000012345, new DateTime(2022, 6, 6), "9:30"));
+            turnos.Add(new Turno(11283848, 000012312, new DateTime(2022, 6, 7), "10:30"));
+            turnos.Add(new Turno(10303456, 000012445, new DateTime(2022, 6, 9), "10:30"));
+            turnos.Add(new Turno(10303456, 000012312, new DateTime(2022, 6, 10), "11:00"));
+            turnos.Add(new Turno(18373466, 000012445, new DateTime(2022, 6, 8), "10:30"));
+            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 8), "12:30"));
+            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 11), "10:00"));
+        }
+
         public static int GenerarSiguienteIdTurno()
         {
             int id = 0;
@@ -213,17 +235,6 @@ namespace Entidades
             }
 
             return id + 1;
-        }
-
-        public static void AgregarTurnos()
-        {
-            turnos.Add(new Turno(11283848, 000012345, new DateTime(2022, 6, 6), "9:30"));
-            turnos.Add(new Turno(11283848, 000012312, new DateTime(2022, 6, 7), "10:30"));
-            turnos.Add(new Turno(10303456, 000012445, new DateTime(2022, 6, 9), "10:30"));
-            turnos.Add(new Turno(10303456, 000012312, new DateTime(2022, 6, 10), "11:00"));
-            turnos.Add(new Turno(18373466, 000012445, new DateTime(2022, 6, 8), "10:30"));
-            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 8), "12:30"));
-            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 11), "10:00"));
         }
 
         public static List<Turno> ListarTurnosPorFecha(DateTime dia)
@@ -241,7 +252,6 @@ namespace Entidades
             return turnosDelDia;
         }
 
-        //falta hacer validaciones!
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
         {
             if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))

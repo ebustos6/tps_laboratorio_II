@@ -59,3 +59,4 @@ C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\For
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\ref\Forms.dll
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmAltaPaciente.resources
+C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmAltaMedico.resources

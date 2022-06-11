@@ -58,7 +58,9 @@ namespace Forms
         {
             if (esMedico)
             {
-
+                FrmAltaMedico m = new FrmAltaMedico();
+                m.Show();
+                this.Close();
             }
             else
             {

@@ -66,5 +66,6 @@ namespace Entidades
         {
             return "Dr. " + this.Nombre;
         }
+
     }
 }

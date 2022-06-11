@@ -44,12 +44,12 @@ namespace Forms
                 }
                 else
                 {
-                    MessageBox.Show("Los datos ingresados son invalidos o el numero de obra social que intenta ingresar ya existe.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("El nombre o apellido ingresado es invalido o el numero de obra social que intenta ingresar ya existe.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
-                MessageBox.Show("Por favor ingrese un numero valido.","Alta Paciente",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Por favor ingrese un numero de Obra Social valido.","Alta Paciente",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
 
         }
