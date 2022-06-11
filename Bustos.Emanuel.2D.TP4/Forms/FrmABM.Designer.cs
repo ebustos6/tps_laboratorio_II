@@ -41,6 +41,7 @@
             this.btnCrear.TabIndex = 1;
             this.btnCrear.Text = "Crear";
             this.btnCrear.UseVisualStyleBackColor = true;
+            this.btnCrear.Click += new System.EventHandler(this.btnCrear_Click);
             // 
             // btnListar
             // 
@@ -66,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 192);
+            this.ClientSize = new System.Drawing.Size(471, 204);
             this.ControlBox = false;
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnListar);
@@ -76,6 +77,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmABM";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM";
             this.Load += new System.EventHandler(this.FrmABM_Load);
             this.ResumeLayout(false);

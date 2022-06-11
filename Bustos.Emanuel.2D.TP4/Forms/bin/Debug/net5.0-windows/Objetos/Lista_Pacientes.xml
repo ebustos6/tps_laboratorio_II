@@ -20,4 +20,14 @@
     <Apellido>Gallardo</Apellido>
     <NroObraSocial>12445</NroObraSocial>
   </Paciente>
+  <Paciente>
+    <Nombre>Jim</Nombre>
+    <Apellido>Halpert</Apellido>
+    <NroObraSocial>123123123</NroObraSocial>
+  </Paciente>
+  <Paciente>
+    <Nombre>Pam</Nombre>
+    <Apellido>Beesley</Apellido>
+    <NroObraSocial>112233</NroObraSocial>
+  </Paciente>
 </ArrayOfPaciente>

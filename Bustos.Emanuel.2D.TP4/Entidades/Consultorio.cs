@@ -273,5 +273,16 @@ namespace Entidades
             }
             return null;
         }
+
+        public static bool CrearPaciente(string nombre, string apellido, int os)
+        {
+            if (!string.IsNullOrWhiteSpace(nombre.Trim()) && !string.IsNullOrWhiteSpace(apellido.Trim()) && BuscarPacientePorOS(os) is null)
+            {
+                pacientes.Add(new Paciente(nombre, apellido, os));
+                SerializacionXml<List<Paciente>>.Serializar(Pacientes, "pacientes");
+                return true;
+            }
+            return false;
+        }
     }
 }

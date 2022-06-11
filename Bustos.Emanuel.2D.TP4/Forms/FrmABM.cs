@@ -53,5 +53,19 @@ namespace Forms
                 this.Text = "Pacientes";
             }
         }
+
+        private void btnCrear_Click(object sender, EventArgs e)
+        {
+            if (esMedico)
+            {
+
+            }
+            else
+            {
+                FrmAltaPaciente p = new FrmAltaPaciente();
+                p.Show();
+                this.Close();
+            }
+        }
     }
 }
