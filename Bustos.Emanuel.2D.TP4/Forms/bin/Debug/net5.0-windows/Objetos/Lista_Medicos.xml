@@ -50,4 +50,24 @@
       <IDias>Jueves</IDias>
     </DiasDisponibles>
   </Medico>
+  <Medico>
+    <Legajo>10005</Legajo>
+    <Nombre>Rimolo</Nombre>
+    <Matricula>111111</Matricula>
+    <DiasDisponibles>
+      <IDias>Lunes</IDias>
+      <IDias>Miercoles</IDias>
+      <IDias>Viernes</IDias>
+      <IDias>Sabado</IDias>
+    </DiasDisponibles>
+  </Medico>
+  <Medico>
+    <Legajo>10006</Legajo>
+    <Nombre>Ahorro</Nombre>
+    <Matricula>22334455</Matricula>
+    <DiasDisponibles>
+      <IDias>Martes</IDias>
+      <IDias>Jueves</IDias>
+    </DiasDisponibles>
+  </Medico>
 </ArrayOfMedico>

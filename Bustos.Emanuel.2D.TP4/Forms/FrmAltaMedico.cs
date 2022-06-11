@@ -22,11 +22,15 @@ namespace Forms
         {
             this.txtNombre.Text = string.Empty;
             this.txtMatricula.Text = string.Empty;
+            for (int i = 0; i < clbDiasDisponibles.Items.Count; i++)
+            {
+                clbDiasDisponibles.SetItemChecked(i, false);
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            FrmABM c = new FrmABM(false);
+            FrmABM c = new FrmABM(true);
             c.Show();
             this.Close();
         }
