@@ -70,11 +70,7 @@ namespace Forms
                     this.btnAdicional.Show();
                     this.Text = $"Turnos {aux2.Day}/{aux2.Month}/{aux2.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux2);
-                    this.dgvListado.Columns[0].Visible = false;
-                    this.dgvListado.Columns[1].Visible = false;
-                    this.dgvListado.Columns[2].Visible = false;
-                    this.dgvListado.Columns[3].Visible = false;
-                    this.ModificarDataGrid();
+                    this.ModificarDataGrid(1);
                     break;
 
                 case 3:
@@ -130,11 +126,7 @@ namespace Forms
                 this.Text = $"Turnos del Paciente {paciente.Nombre} {paciente.Apellido}";
                 this.dgvListado.DataSource = Consultorio.ListarTurnosPorPaciente(os);
                 this.dgvListado.Refresh();
-                this.dgvListado.Columns[0].Visible = false;
-                this.dgvListado.Columns[1].Visible = false;
-                this.dgvListado.Columns[2].Visible = false;
-                this.ModificarDataGrid();
-                this.dgvListado.Columns["Nombre_Paciente"].Visible = false;
+                this.ModificarDataGrid(2);
                 this.btnAdicional.Text = "Descargar Certificado";
                 this.tipoLista = 5;
 
@@ -166,10 +158,15 @@ namespace Forms
             
         }
 
-        private void ModificarDataGrid()
+        private void ModificarDataGrid(int opcion)
         {
+            this.dgvListado.Columns[0].Visible = false;
+            this.dgvListado.Columns[1].Visible = false;
+            this.dgvListado.Columns[2].Visible = false;
+
             dgvListado.Columns.Add("Nombre_Medico", "Nombre Medico");
             dgvListado.Columns.Add("Nombre_Paciente", "Nombre Paciente");
+
             for (int i = 0; i < dgvListado.RowCount; i++)
             {
                 Medico medico = Consultorio.BuscarMedicoPorMatricula((int)dgvListado.Rows[i].Cells[1].Value);
@@ -178,6 +175,16 @@ namespace Forms
                 dgvListado.Rows[i].Cells["Nombre_Paciente"].Value = $"{paciente.Apellido} {paciente.Nombre}";
 
             }
+
+            if (opcion == 1)
+            {
+                this.dgvListado.Columns[3].Visible = false;
+            }
+            else
+            {
+                this.dgvListado.Columns["Nombre_Paciente"].Visible = false;
+            }
+
             this.dgvListado.Refresh();
         }
     }
