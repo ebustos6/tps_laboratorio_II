@@ -24,7 +24,7 @@ namespace Forms
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            if (tipoLista == 3)
+            if (tipoLista == 3 || tipoLista == 5)
             {
                 FrmABM p = new FrmABM(false);
                 p.Show();
@@ -47,8 +47,8 @@ namespace Forms
 
         private void FrmListar_Load(object sender, EventArgs e)
         {
-            this.btnCertificado.Enabled = false;
-            this.btnCertificado.Hide();
+            this.btnAdicional.Enabled = false;
+            this.btnAdicional.Hide();
             this.CargarDataGrid(this.tipoLista);
         }
 
@@ -65,16 +65,22 @@ namespace Forms
 
                 case 2:
                     DateTime aux2 = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
-                    //ver la forma de mostrar los nombres del medico y del paciente
-                    this.btnCertificado.Enabled = true;
-                    this.btnCertificado.Show();
+                    this.btnAdicional.Text = "Descargar Certificado";
+                    this.btnAdicional.Enabled = true;
+                    this.btnAdicional.Show();
                     this.Text = $"Turnos {aux2.Day}/{aux2.Month}/{aux2.Year}";
                     this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux2);
                     this.dgvListado.Columns[0].Visible = false;
+                    this.dgvListado.Columns[1].Visible = false;
+                    this.dgvListado.Columns[2].Visible = false;
                     this.dgvListado.Columns[3].Visible = false;
+                    this.ModificarDataGrid();
                     break;
 
                 case 3:
+                    this.btnAdicional.Text = "Seleccionar Paciente";
+                    this.btnAdicional.Enabled = true;
+                    this.btnAdicional.Show();
                     this.Text = "Pacientes";
                     this.dgvListado.DataSource = Consultorio.Pacientes;
                     break;
@@ -90,22 +96,89 @@ namespace Forms
             
         }
 
-        private void btnCertificado_Click(object sender, EventArgs e)
+        private void btnAdicional_Click(object sender, EventArgs e)
         {
-            int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
-            int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
-            DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
-            string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+            if (tipoLista == 2)
+            {
+                if (this.dgvListado.SelectedRows.Count > 0)
+                {
+                    int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                    int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
+                    DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                    string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
 
-            if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
-            {
-                Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), aux, horario);
-                MessageBox.Show("El certificado ha sido emitido con exito.");
+                    if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                    {
+                        Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), aux, horario);
+                        MessageBox.Show("El certificado ha sido emitido con exito.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay ningun certificado seleccionado.");
+                }
+                
             }
-            else
+            else if (tipoLista == 3)
             {
-                MessageBox.Show("Error.");
+                int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                Paciente paciente = Consultorio.BuscarPacientePorOS(os);
+                this.Text = $"Turnos del Paciente {paciente.Nombre} {paciente.Apellido}";
+                this.dgvListado.DataSource = Consultorio.ListarTurnosPorPaciente(os);
+                this.dgvListado.Refresh();
+                this.dgvListado.Columns[0].Visible = false;
+                this.dgvListado.Columns[1].Visible = false;
+                this.dgvListado.Columns[2].Visible = false;
+                this.ModificarDataGrid();
+                this.dgvListado.Columns["Nombre_Paciente"].Visible = false;
+                this.btnAdicional.Text = "Descargar Certificado";
+                this.tipoLista = 5;
+
             }
+            else if (tipoLista == 5)
+            {
+                if (this.dgvListado.SelectedRows.Count > 0)
+                {
+                    int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                    int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
+                    DateTime fecha = (DateTime)this.dgvListado.SelectedRows[0].Cells[3].Value;
+                    string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+
+                    if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                    {
+                        Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), fecha, horario);
+                        MessageBox.Show("El certificado ha sido emitido con exito.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No hay ningun certificado seleccionado.");
+                }
+            }
+            
+        }
+
+        private void ModificarDataGrid()
+        {
+            dgvListado.Columns.Add("Nombre_Medico", "Nombre Medico");
+            dgvListado.Columns.Add("Nombre_Paciente", "Nombre Paciente");
+            for (int i = 0; i < dgvListado.RowCount; i++)
+            {
+                Medico medico = Consultorio.BuscarMedicoPorMatricula((int)dgvListado.Rows[i].Cells[1].Value);
+                Paciente paciente = Consultorio.BuscarPacientePorOS((int)dgvListado.Rows[i].Cells[2].Value);
+                dgvListado.Rows[i].Cells["Nombre_Medico"].Value = medico.ToString();
+                dgvListado.Rows[i].Cells["Nombre_Paciente"].Value = $"{paciente.Apellido} {paciente.Nombre}";
+
+            }
+            this.dgvListado.Refresh();
         }
     }
 }

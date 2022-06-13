@@ -14,9 +14,9 @@ namespace Entidades
         private DateTime fecha;
         private string horario;
 
-        public Turno(int medico, int paciente, DateTime fecha, string horario)
+        public Turno(int id, int medico, int paciente, DateTime fecha, string horario)
         {
-            this.idTurno = Consultorio.GenerarSiguienteIdTurno();
+            this.idTurno = id;
             this.medico = medico;
             this.paciente = paciente;
             this.fecha = fecha;

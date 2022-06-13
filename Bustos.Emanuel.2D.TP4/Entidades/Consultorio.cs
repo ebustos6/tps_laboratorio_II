@@ -197,16 +197,12 @@ namespace Entidades
         {
             int id = 0;
 
-            if (turnos is not null)
+            foreach (Turno item in turnos)
             {
-                foreach (Turno item in turnos)
+                if (item.IdTurno > id)
                 {
-                    if (item.IdTurno > id)
-                    {
-                        id = item.IdTurno;
-                    }
+                    id = item.IdTurno;
                 }
-
             }
 
             return id + 1;
@@ -227,11 +223,26 @@ namespace Entidades
             return turnosDelDia;
         }
 
+        public static List<Turno> ListarTurnosPorPaciente(int paciente)
+        {
+            List<Turno> turnosDelPaciente = new List<Turno>();
+
+            foreach (Turno item in turnos)
+            {
+                if (item.Paciente == paciente)
+                {
+                    turnosDelPaciente.Add(item);
+                }
+            }
+
+            return turnosDelPaciente;
+        }
+
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
         {
             if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))
             {
-                Turno turno = new Turno(medico, paciente, fecha, horario);
+                Turno turno = new Turno(GenerarSiguienteIdTurno(),medico, paciente, fecha, horario);
                 turnos.Add(turno);
                 AccesoDB.GuardarTurno(turno);
                 return true;

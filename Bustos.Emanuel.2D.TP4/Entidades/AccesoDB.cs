@@ -90,7 +90,7 @@ namespace Entidades
                 {
                     while (reader.Read())
                     {
-                        turnos.Add(new Turno(Convert.ToInt32(reader["MATRICULA_MEDICO"]), Convert.ToInt32(reader["OS_PACIENTE"]), (DateTime)reader["FECHA"], reader["HORARIO"].ToString()));
+                        turnos.Add(new Turno(Convert.ToInt32(reader["ID_TURNO"]), Convert.ToInt32(reader["MATRICULA_MEDICO"]), Convert.ToInt32(reader["OS_PACIENTE"]), (DateTime)reader["FECHA"], reader["HORARIO"].ToString()));
                     }
                 }
 
