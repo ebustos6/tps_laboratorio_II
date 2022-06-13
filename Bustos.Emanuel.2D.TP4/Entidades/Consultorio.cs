@@ -32,14 +32,8 @@ namespace Entidades
             horarios = new List<string>();
             AgregarHorarios();
             medicos = SerializacionXml<List<Medico>>.Deserializar("Medicos");
-            //AgregarMedicos();
-            //SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
-            turnos = SerializacionXml<List<Turno>>.Deserializar("Turnos");
-            //AgregarTurnos();
-            //SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
-            pacientes = SerializacionXml<List<Paciente>>.Deserializar("Pacientes");
-            //AgregarPacientes();
-            //SerializacionXml<List<Paciente>>.Serializar(pacientes, "Pacientes");
+            turnos = AccesoDB.LeerTurnos();
+            pacientes = AccesoDB.LeerPacientes();
         }
 
         public static List<string> Horarios
@@ -63,11 +57,9 @@ namespace Entidades
         private static void AgregarUsuarios()
         {
             usuarios.Add(new Usuario(64031, "Ema", "123"));
-            usuarios.Add(new Usuario(64081, "Pepe", "123"));
             usuarios.Add(new Usuario(64060, "Alberto", "123"));
             usuarios.Add(new Usuario(64029, "Wally", "123"));
             usuarios.Add(new Usuario(64055, "Silvina", "123"));
-            usuarios.Add(new Usuario(64080, "Ilda", "123"));
         }
 
         /// <summary>
@@ -149,16 +141,6 @@ namespace Entidades
             return horariosDisponibles;
         }
 
-
-
-        private static void AgregarMedicos()
-        {
-            medicos.Add(new Medico("Tangalanga", 11283848, new List<IDias>() { IDias.Lunes, IDias.Martes }));
-            medicos.Add(new Medico("Bilardo", 10303456, new List<IDias>() { IDias.Jueves, IDias.Viernes, IDias.Sabado }));
-            medicos.Add(new Medico("Lotocki", 18373466, new List<IDias>() { IDias.Lunes, IDias.Martes, IDias.Miercoles, IDias.Jueves, IDias.Viernes }));
-            medicos.Add(new Medico("Houssay", 06041991, new List<IDias>() { IDias.Miercoles, IDias.Sabado }));
-        }
-
         public static int GenerarSiguienteIdMedico()
         {
             int id = 10000;
@@ -211,27 +193,20 @@ namespace Entidades
             return false;
         }
 
-        public static void AgregarTurnos()
-        {
-            turnos.Add(new Turno(11283848, 000012345, new DateTime(2022, 6, 6), "9:30"));
-            turnos.Add(new Turno(11283848, 000012312, new DateTime(2022, 6, 7), "10:30"));
-            turnos.Add(new Turno(10303456, 000012445, new DateTime(2022, 6, 9), "10:30"));
-            turnos.Add(new Turno(10303456, 000012312, new DateTime(2022, 6, 10), "11:00"));
-            turnos.Add(new Turno(18373466, 000012445, new DateTime(2022, 6, 8), "10:30"));
-            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 8), "12:30"));
-            turnos.Add(new Turno(06041991, 000012444, new DateTime(2022, 6, 11), "10:00"));
-        }
-
         public static int GenerarSiguienteIdTurno()
         {
             int id = 0;
 
-            foreach (Turno item in turnos)
+            if (turnos is not null)
             {
-                if (item.IdTurno > id)
+                foreach (Turno item in turnos)
                 {
-                    id = item.IdTurno;
+                    if (item.IdTurno > id)
+                    {
+                        id = item.IdTurno;
+                    }
                 }
+
             }
 
             return id + 1;
@@ -256,20 +231,12 @@ namespace Entidades
         {
             if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))
             {
-                turnos.Add(new Turno(medico, paciente, fecha, horario));
-                SerializacionXml<List<Turno>>.Serializar(turnos, "Turnos");
+                Turno turno = new Turno(medico, paciente, fecha, horario);
+                turnos.Add(turno);
+                AccesoDB.GuardarTurno(turno);
                 return true;
             }
             return false;
-        }
-
-
-        private static void AgregarPacientes()
-        {
-            pacientes.Add(new Paciente("Ilda", "Zolezzi", 000012345));
-            pacientes.Add(new Paciente("Pepe", "Rico", 000012312));
-            pacientes.Add(new Paciente("Nirvana", "Olivera", 000012444));
-            pacientes.Add(new Paciente("Gusti", "Gallardo", 000012445));
         }
 
         public static Paciente BuscarPacientePorOS(int obraSocial)
@@ -288,8 +255,9 @@ namespace Entidades
         {
             if (!string.IsNullOrWhiteSpace(nombre.Trim()) && !string.IsNullOrWhiteSpace(apellido.Trim()) && BuscarPacientePorOS(os) is null)
             {
-                pacientes.Add(new Paciente(nombre, apellido, os));
-                SerializacionXml<List<Paciente>>.Serializar(Pacientes, "pacientes");
+                Paciente paciente = new Paciente(nombre, apellido, os);
+                pacientes.Add(paciente);
+                AccesoDB.GuardarPaciente(paciente);
                 return true;
             }
             return false;

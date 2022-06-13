@@ -14,11 +14,6 @@ namespace Entidades
         private DateTime fecha;
         private string horario;
 
-        public Turno()
-        {
-
-        }
-
         public Turno(int medico, int paciente, DateTime fecha, string horario)
         {
             this.idTurno = Consultorio.GenerarSiguienteIdTurno();
@@ -32,31 +27,26 @@ namespace Entidades
         public int IdTurno
         {
             get { return this.idTurno; }
-            set { this.idTurno = value; }
         }
 
         public int Medico 
         { 
             get { return this.medico; } 
-            set { this.medico = value; }
         }
 
         public int Paciente
         {
             get { return this.paciente; }
-            set { this.paciente = value; }
         }
 
         public DateTime Fecha
         {
             get { return this.fecha; }
-            set { this.fecha = value; }
         }
 
         public string Horario
         {
             get { return this.horario; }
-            set { this.horario = value; }
         }
 
     }
