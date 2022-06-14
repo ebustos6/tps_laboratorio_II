@@ -144,25 +144,29 @@ namespace Entidades
         public static int GenerarSiguienteIdMedico()
         {
             int id = 10000;
-
-            foreach (Medico dr in medicos)
+            if (medicos is not null)
             {
-                if (dr.Legajo > id)
+                foreach (Medico dr in medicos)
                 {
-                    id = dr.Legajo;
+                    if (dr.Legajo > id)
+                    {
+                        id = dr.Legajo;
+                    }
                 }
             }
-
             return id + 1;
         }
 
         public static Medico BuscarMedicoPorMatricula(int matricula)
         {
-            foreach (Medico dr in medicos)
+            if (medicos is not null)
             {
-                if (dr.Matricula == matricula)
+                foreach (Medico dr in medicos)
                 {
-                    return dr;
+                    if (dr.Matricula == matricula)
+                    {
+                        return dr;
+                    }
                 }
             }
             return null;
@@ -171,11 +175,15 @@ namespace Entidades
         public static List<Medico> ListarMedicosPorDia(int dia)
         {
             List<Medico> medicosDisponibles = new List<Medico>();
-            foreach (Medico dr in medicos)
+
+            if (medicos is not null)
             {
-                if (dr.EstaDisponible(dia))
+                foreach (Medico dr in medicos)
                 {
-                    medicosDisponibles.Add(dr);
+                    if (dr.EstaDisponible(dia))
+                    {
+                        medicosDisponibles.Add(dr);
+                    }
                 }
             }
 
@@ -193,15 +201,18 @@ namespace Entidades
             return false;
         }
 
-        public static int GenerarSiguienteIdTurno()
+        private static int GenerarSiguienteIdTurno()
         {
             int id = 0;
 
-            foreach (Turno item in turnos)
+            if (turnos is not null)
             {
-                if (item.IdTurno > id)
+                foreach (Turno item in turnos)
                 {
-                    id = item.IdTurno;
+                    if (item.IdTurno > id)
+                    {
+                        id = item.IdTurno;
+                    }
                 }
             }
 
@@ -252,13 +263,17 @@ namespace Entidades
 
         public static Paciente BuscarPacientePorOS(int obraSocial)
         {
-            foreach (Paciente p in pacientes)
+            if (pacientes is not null)
             {
-                if (p.NroObraSocial == obraSocial)
+                foreach (Paciente p in pacientes)
                 {
-                    return p;
+                    if (p.NroObraSocial == obraSocial)
+                    {
+                        return p;
+                    }
                 }
             }
+            
             return null;
         }
 
