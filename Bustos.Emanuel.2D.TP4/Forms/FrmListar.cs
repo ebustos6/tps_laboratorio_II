@@ -94,67 +94,76 @@ namespace Forms
 
         private void btnAdicional_Click(object sender, EventArgs e)
         {
-            if (this.tipoLista == 2)
+            try
             {
-                if (this.dgvListado.SelectedRows.Count > 0)
+                if (this.tipoLista == 2)
                 {
-                    int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
-                    int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
-                    DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
-                    string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
-
-                    if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                    if (this.dgvListado.SelectedRows.Count > 0)
                     {
-                        Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), aux, horario);
-                        MessageBox.Show("El certificado ha sido emitido con exito.");
+                        int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                        int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
+                        DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                        string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+
+                        if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                        {
+                            Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), aux, horario);
+                            MessageBox.Show("El certificado ha sido emitido con exito.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error.");
+                        MessageBox.Show("No hay ningun certificado seleccionado.");
                     }
-                }
-                else
-                {
-                    MessageBox.Show("No hay ningun certificado seleccionado.");
-                }
-                
-            }
-            else if (this.tipoLista == 3)
-            {
-                int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
-                Paciente paciente = Consultorio.BuscarPacientePorOS(os);
-                this.Text = $"Turnos del Paciente {paciente.Nombre} {paciente.Apellido}";
-                this.dgvListado.DataSource = Consultorio.ListarTurnosPorPaciente(os);
-                this.dgvListado.Refresh();
-                this.ModificarDataGrid(2);
-                this.btnAdicional.Text = "Descargar Certificado";
-                this.tipoLista = 5;
 
-            }
-            else if (this.tipoLista == 5)
-            {
-                if (this.dgvListado.SelectedRows.Count > 0)
+                }
+                else if (this.tipoLista == 3)
                 {
-                    int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
-                    int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
-                    DateTime fecha = (DateTime)this.dgvListado.SelectedRows[0].Cells[3].Value;
-                    string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+                    int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                    Paciente paciente = Consultorio.BuscarPacientePorOS(os);
+                    this.Text = $"Turnos del Paciente {paciente.Nombre} {paciente.Apellido}";
+                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorPaciente(os);
+                    this.dgvListado.Refresh();
+                    this.ModificarDataGrid(2);
+                    this.btnAdicional.Text = "Descargar Certificado";
+                    this.tipoLista = 5;
 
-                    if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                }
+                else if (this.tipoLista == 5)
+                {
+                    if (this.dgvListado.SelectedRows.Count > 0)
                     {
-                        Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), fecha, horario);
-                        MessageBox.Show("El certificado ha sido emitido con exito.");
+                        int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
+                        int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
+                        DateTime fecha = (DateTime)this.dgvListado.SelectedRows[0].Cells[3].Value;
+                        string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
+
+                        if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
+                        {
+                            Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), fecha, horario);
+                            MessageBox.Show("El certificado ha sido emitido con exito.");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error.");
+                        MessageBox.Show("No hay ningun certificado seleccionado.");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("No hay ningun certificado seleccionado.");
-                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            
             
         }
 

@@ -42,9 +42,9 @@ namespace Forms
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(this.txtMatricula.Text, out int matricula))
+            try
             {
-                if (ListarDiasDisponibles() is not null)
+                if (int.TryParse(this.txtMatricula.Text, out int matricula))
                 {
                     if (Consultorio.CrearMedico(this.txtNombre.Text, matricula, ListarDiasDisponibles()))
                     {
@@ -54,16 +54,19 @@ namespace Forms
                     else
                     {
                         MessageBox.Show("El nombre ingresado es invalido o la matricula ingresada ya existe.", "Alta Medico", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Limpiar();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Ingrese por lo menos un dia disponible.", "Alta Medico", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor ingrese un numero de matricula valido.", "Alta Medico", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Limpiar();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor ingrese un numero de matricula valido.", "Alta Medico", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
+                this.Limpiar();
             }
         }
 
@@ -76,6 +79,10 @@ namespace Forms
                 {
                     diasDisponibles.Add((IDias)i + 1);
                 }
+            }
+            if (diasDisponibles is null || diasDisponibles.Count <= 0)
+            {
+                throw new Exception("Ingrese por lo menos un dia disponible.");
             }
             return diasDisponibles;
         }

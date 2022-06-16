@@ -35,23 +35,32 @@ namespace Forms
 
         private void btnCrear_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtObraSocial.Text, out int aux))
+            try
             {
-                if (Consultorio.CrearPaciente(txtNombre.Text, txtApellido.Text, aux))
+                if (int.TryParse(txtObraSocial.Text, out int aux))
                 {
-                    MessageBox.Show("Paciente creado exitosamente.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Limpiar();
+                    if (Consultorio.CrearPaciente(txtNombre.Text, txtApellido.Text, aux))
+                    {
+                        MessageBox.Show("Paciente creado exitosamente.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El nombre o apellido ingresado es invalido o el numero de obra social que intenta ingresar ya existe.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Limpiar();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El nombre o apellido ingresado es invalido o el numero de obra social que intenta ingresar ya existe.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Por favor ingrese un numero de Obra Social valido.", "Alta Paciente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    this.Limpiar();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor ingrese un numero de Obra Social valido.","Alta Paciente",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message);
+                this.Limpiar();
             }
-
         }
 
         

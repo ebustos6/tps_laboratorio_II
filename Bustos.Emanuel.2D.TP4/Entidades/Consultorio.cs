@@ -38,7 +38,14 @@ namespace Entidades
 
         public static List<string> Horarios
         {
-            get { return horarios; }
+            get
+            {
+                if (horarios is null || horarios.Count <= 0)
+                {
+                    throw new Exception("No existe una lista de horarios, o esta vacia.");
+                }
+                return horarios; 
+            }
         }
 
         public static List<Medico> Medicos
@@ -70,13 +77,28 @@ namespace Entidades
         /// <returns>devuelve un bool informando si se logro o no</returns>
         public static bool LoggearUsuario(string usuario, string pass)
         {
-            foreach (Usuario u in usuarios)
+            if (usuarios is not null && usuarios.Count > 0)
             {
-                if (u.Nombre == usuario && u.ValidarPass(pass))
+                if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(pass))
                 {
-                    return true;
+                    throw new ArgumentException("Los campos de usuario y contraseña no deben ser nulos o estar vacios.");
                 }
+                else
+                {
+                    foreach (Usuario u in usuarios)
+                    {
+                        if (u.Nombre == usuario && u.ValidarPass(pass))
+                        {
+                            return true;
+                        }
+                    }
+                }   
             }
+            else
+            {
+                throw new InvalidOperationException("No existe una lista de usuarios, o esta vacia.");
+            }
+            
             return false;
         }
 
@@ -130,13 +152,21 @@ namespace Entidades
         public static List<string> HorariosDisponibles(DateTime dia, int medico)
         {
             List<string> horariosDisponibles = new List<string>();
-            foreach (string horario in horarios)
+            if (horarios is not null || horarios.Count > 0)
             {
-                if (!EstaOcupado(horario, dia, medico))
+                foreach (string horario in horarios)
                 {
-                    horariosDisponibles.Add(horario);
+                    if (!EstaOcupado(horario, dia, medico))
+                    {
+                        horariosDisponibles.Add(horario);
+                    }
                 }
             }
+            else
+            {
+                throw new InvalidOperationException("No existe una lista de horarios o esta vacia");
+            }
+            
 
             return horariosDisponibles;
         }
@@ -192,13 +222,21 @@ namespace Entidades
 
         public static bool CrearMedico(string nombre, int matricula, List<IDias> diasDisponibles)
         {
-            if (nombre is not null && BuscarMedicoPorMatricula(matricula) is null && diasDisponibles is not null)
+            try
             {
-                medicos.Add(new Medico(nombre, matricula, diasDisponibles));
-                SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
-                return true;
+                if (nombre is not null && BuscarMedicoPorMatricula(matricula) is null && diasDisponibles is not null)
+                {
+                    medicos.Add(new Medico(nombre, matricula, diasDisponibles));
+                    SerializacionXml<List<Medico>>.Serializar(medicos, "Medicos");
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.InnerException.Message);
+            }   
         }
 
         private static int GenerarSiguienteIdTurno()
@@ -251,14 +289,23 @@ namespace Entidades
 
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
         {
-            if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))
+            try
             {
-                Turno turno = new Turno(GenerarSiguienteIdTurno(),medico, paciente, fecha, horario);
-                turnos.Add(turno);
-                AccesoDB.GuardarTurno(turno);
-                return true;
+                if (BuscarMedicoPorMatricula(medico) is not null && BuscarPacientePorOS(paciente) is not null && !EstaOcupado(horario, fecha, medico))
+                {
+                    Turno turno = new Turno(GenerarSiguienteIdTurno(), medico, paciente, fecha, horario);
+                    turnos.Add(turno);
+                    AccesoDB.GuardarTurno(turno);
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.InnerException.Message);
+            }
+            
         }
 
         public static Paciente BuscarPacientePorOS(int obraSocial)
@@ -279,14 +326,22 @@ namespace Entidades
 
         public static bool CrearPaciente(string nombre, string apellido, int os)
         {
-            if (!string.IsNullOrWhiteSpace(nombre.Trim()) && !string.IsNullOrWhiteSpace(apellido.Trim()) && BuscarPacientePorOS(os) is null)
+            try
             {
-                Paciente paciente = new Paciente(nombre, apellido, os);
-                pacientes.Add(paciente);
-                AccesoDB.GuardarPaciente(paciente);
-                return true;
+                if (!string.IsNullOrWhiteSpace(nombre.Trim()) && !string.IsNullOrWhiteSpace(apellido.Trim()) && BuscarPacientePorOS(os) is null)
+                {
+                    Paciente paciente = new Paciente(nombre, apellido, os);
+                    pacientes.Add(paciente);
+                    AccesoDB.GuardarPaciente(paciente);
+                    return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.InnerException.Message);
+            }
+            
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Entidades
         private static SqlCommand command;
         private static SqlConnection connection;
 
-
         static AccesoDB()
         {
             connectionString = @"Data Source=.;Initial Catalog=UTN_DB;Integrated Security=True";
@@ -44,8 +43,7 @@ namespace Entidades
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception($"Error en el acceso a base de datos, metodo LeerPacientes()");
             }
             finally
             {
@@ -68,8 +66,7 @@ namespace Entidades
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception($"Error en el acceso a base de datos, metodo GuardarPaciente()");
             }
             finally
             {
@@ -98,8 +95,7 @@ namespace Entidades
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception($"Error en el acceso a base de datos, metodo LeerTurnos()");
             }
             finally
             {
@@ -124,8 +120,7 @@ namespace Entidades
             }
             catch (Exception)
             {
-
-                throw;
+                throw new Exception($"Error en el acceso a base de datos, metodo GuardarTurno()");
             }
             finally
             {

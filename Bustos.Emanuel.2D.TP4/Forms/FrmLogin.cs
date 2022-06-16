@@ -50,16 +50,16 @@ namespace Forms
         /// <param name="e"></param>
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(this.txtUsuario.Text) && !string.IsNullOrWhiteSpace(this.txtPass.Text))
+            try
             {
                 if (Consultorio.LoggearUsuario(this.txtUsuario.Text.Trim(), this.txtPass.Text.Trim()))
                 {
-                    
+
                     this.ok.Play();
                     FrmMenuPrincipal menu = new FrmMenuPrincipal();
                     menu.Show();
                     this.Hide();
-                    
+
                 }
                 else
                 {
@@ -68,12 +68,13 @@ namespace Forms
                     this.Limpiar();
                 }
             }
-            else
+            catch (Exception ex)
             {
                 this.no.Play();
-                MessageBox.Show("No debe dejar espacios en blanco.", "Ingresar", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Limpiar();
+                MessageBox.Show(ex.Message);
             }
+
         }
 
         private void btnUsuario_Click(object sender, EventArgs e)
