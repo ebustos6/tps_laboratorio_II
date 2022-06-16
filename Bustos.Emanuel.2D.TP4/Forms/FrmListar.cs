@@ -11,7 +11,7 @@ using Entidades;
 
 namespace Forms
 {
-    public partial class FrmListar : Form
+    public partial class FrmListar : Form,ICargarDataGrid
     {
         private int dia;
         private int tipoLista;
@@ -24,13 +24,13 @@ namespace Forms
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            if (tipoLista == 3 || tipoLista == 5)
+            if (this.tipoLista == 3 || this.tipoLista == 5)
             {
                 FrmABM p = new FrmABM(false);
                 p.Show();
                 this.Close();
             }
-            else if (tipoLista == 4)
+            else if (this.tipoLista == 4)
             {
                 FrmABM m = new FrmABM(true);
                 m.Show();
@@ -49,13 +49,13 @@ namespace Forms
         {
             this.btnAdicional.Enabled = false;
             this.btnAdicional.Hide();
-            this.CargarDataGrid(this.tipoLista);
+            this.CargarDatos();
         }
 
-        private void CargarDataGrid(int tipoLista)
+        public void CargarDatos()
         {
             
-            switch (tipoLista)
+            switch (this.tipoLista)
             {
                 case 1:
                     DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
@@ -74,7 +74,7 @@ namespace Forms
                     break;
 
                 case 3:
-                    this.btnAdicional.Text = "Seleccionar Paciente";
+                    this.btnAdicional.Text = "Ver Historial de Turnos";
                     this.btnAdicional.Enabled = true;
                     this.btnAdicional.Show();
                     this.Text = "Pacientes";
@@ -94,7 +94,7 @@ namespace Forms
 
         private void btnAdicional_Click(object sender, EventArgs e)
         {
-            if (tipoLista == 2)
+            if (this.tipoLista == 2)
             {
                 if (this.dgvListado.SelectedRows.Count > 0)
                 {
@@ -119,7 +119,7 @@ namespace Forms
                 }
                 
             }
-            else if (tipoLista == 3)
+            else if (this.tipoLista == 3)
             {
                 int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
                 Paciente paciente = Consultorio.BuscarPacientePorOS(os);
@@ -131,7 +131,7 @@ namespace Forms
                 this.tipoLista = 5;
 
             }
-            else if (tipoLista == 5)
+            else if (this.tipoLista == 5)
             {
                 if (this.dgvListado.SelectedRows.Count > 0)
                 {

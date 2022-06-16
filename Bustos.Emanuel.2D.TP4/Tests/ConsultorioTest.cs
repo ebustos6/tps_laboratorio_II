@@ -90,9 +90,9 @@ namespace Tests
         }
 
         [TestMethod]
-        public void CrearPaciente_ListaPacientesVacia_DeberiaRetornarTrue()
+        public void CrearPaciente_PacienteExistente_DeberiaRetornarFalse()
         {
-            Assert.IsTrue(Consultorio.CrearPaciente("Erick", "Cartman", 666));
+            Assert.IsFalse(Consultorio.CrearPaciente("Erick", "Cartman", 666));
         }
     }
 }

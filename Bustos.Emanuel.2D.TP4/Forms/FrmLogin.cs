@@ -12,7 +12,7 @@ using Entidades;
 
 namespace Forms
 {
-    public partial class FrmLogin : Form
+    public partial class FrmLogin : Form,ILimpiar
     {
         private SoundPlayer ok;
         private SoundPlayer no;
@@ -26,7 +26,7 @@ namespace Forms
         /// <summary>
         /// vacia txtUsuario y txtPass.
         /// </summary>
-        private void Limpiar()
+        public void Limpiar()
         {
             this.txtUsuario.Text = string.Empty;
             this.txtPass.Text = string.Empty;

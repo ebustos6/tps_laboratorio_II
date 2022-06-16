@@ -11,7 +11,7 @@ using Entidades;
 
 namespace Forms
 {
-    public partial class FrmTurno : Form
+    public partial class FrmTurno : Form,ICargarDataGrid
     {
         private int dia;
         public FrmTurno(int dia)
@@ -34,7 +34,7 @@ namespace Forms
             this.dgvListadoMedicos.Enabled = true;
         }
 
-        private void CargarDatos()
+        public void CargarDatos()
         {
             DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
             this.Text = $"Crear Turno para el dia {aux.Day}/{aux.Month}/{aux.Year}";

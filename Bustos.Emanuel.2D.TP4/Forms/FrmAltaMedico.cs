@@ -11,14 +11,14 @@ using Entidades;
 
 namespace Forms
 {
-    public partial class FrmAltaMedico : Form
+    public partial class FrmAltaMedico : Form,ILimpiar
     {
         public FrmAltaMedico()
         {
             InitializeComponent();
         }
 
-        private void Limpiar()
+        public void Limpiar()
         {
             this.txtNombre.Text = string.Empty;
             this.txtMatricula.Text = string.Empty;
