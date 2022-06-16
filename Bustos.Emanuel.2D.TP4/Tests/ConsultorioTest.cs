@@ -43,7 +43,7 @@ namespace Tests
         [TestMethod]
         public void CrearMedico_NombreNuloMatriculaCorrectaListaCorrecta_DeberiaRetornarFalse()
         {
-            bool resultado = Consultorio.CrearMedico(null, 444444, new List<IDias> { IDias.Lunes, IDias.Martes });
+            bool resultado = Consultorio.CrearMedico(null, 444444, new List<Dias> { Dias.Lunes, Dias.Martes });
 
             Assert.IsFalse(resultado);
         }

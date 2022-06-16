@@ -70,14 +70,14 @@ namespace Forms
             }
         }
 
-        private List<IDias> ListarDiasDisponibles()
+        private List<Dias> ListarDiasDisponibles()
         {
-            List<IDias> diasDisponibles = new List<IDias>();
+            List<Dias> diasDisponibles = new List<Dias>();
             for (int i = 0; i < clbDiasDisponibles.Items.Count; i++)
             {
                 if (clbDiasDisponibles.GetItemChecked(i))
                 {
-                    diasDisponibles.Add((IDias)i + 1);
+                    diasDisponibles.Add((Dias)i + 1);
                 }
             }
             if (diasDisponibles is null || diasDisponibles.Count <= 0)

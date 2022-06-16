@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    public enum IDias
+    public enum Dias
     {
         Domingo,
         Lunes,
@@ -42,7 +42,7 @@ namespace Entidades
             {
                 if (horarios is null || horarios.Count <= 0)
                 {
-                    throw new Exception("No existe una lista de horarios, o esta vacia.");
+                    throw new ListaInexistenteException("No existe una lista de horarios, o esta vacia.");
                 }
                 return horarios; 
             }
@@ -81,7 +81,7 @@ namespace Entidades
             {
                 if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(pass))
                 {
-                    throw new ArgumentException("Los campos de usuario y contraseña no deben ser nulos o estar vacios.");
+                    throw new Exception("Los campos de usuario y contraseña no deben ser nulos o estar vacios.");
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace Entidades
             }
             else
             {
-                throw new InvalidOperationException("No existe una lista de usuarios, o esta vacia.");
+                throw new ListaInexistenteException("No existe una lista de usuarios, o esta vacia.");
             }
             
             return false;
@@ -164,7 +164,7 @@ namespace Entidades
             }
             else
             {
-                throw new InvalidOperationException("No existe una lista de horarios o esta vacia");
+                throw new ListaInexistenteException("No existe una lista de horarios o esta vacia");
             }
             
 
@@ -220,7 +220,7 @@ namespace Entidades
             return medicosDisponibles;
         }
 
-        public static bool CrearMedico(string nombre, int matricula, List<IDias> diasDisponibles)
+        public static bool CrearMedico(string nombre, int matricula, List<Dias> diasDisponibles)
         {
             try
             {

@@ -5,8 +5,8 @@
     <Nombre>Tangalanga</Nombre>
     <Matricula>11283848</Matricula>
     <DiasDisponibles>
-      <IDias>Lunes</IDias>
-      <IDias>Martes</IDias>
+      <Dias>Lunes</Dias>
+      <Dias>Martes</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -14,9 +14,9 @@
     <Nombre>Bilardo</Nombre>
     <Matricula>10303456</Matricula>
     <DiasDisponibles>
-      <IDias>Jueves</IDias>
-      <IDias>Viernes</IDias>
-      <IDias>Sabado</IDias>
+      <Dias>Jueves</Dias>
+      <Dias>Viernes</Dias>
+      <Dias>Sabado</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -24,11 +24,11 @@
     <Nombre>Lotocki</Nombre>
     <Matricula>18373466</Matricula>
     <DiasDisponibles>
-      <IDias>Lunes</IDias>
-      <IDias>Martes</IDias>
-      <IDias>Miercoles</IDias>
-      <IDias>Jueves</IDias>
-      <IDias>Viernes</IDias>
+      <Dias>Lunes</Dias>
+      <Dias>Martes</Dias>
+      <Dias>Miercoles</Dias>
+      <Dias>Jueves</Dias>
+      <Dias>Viernes</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -36,8 +36,8 @@
     <Nombre>Houssay</Nombre>
     <Matricula>6041991</Matricula>
     <DiasDisponibles>
-      <IDias>Miercoles</IDias>
-      <IDias>Sabado</IDias>
+      <Dias>Miercoles</Dias>
+      <Dias>Sabado</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -45,9 +45,9 @@
     <Nombre>Socolinsky</Nombre>
     <Matricula>11662299</Matricula>
     <DiasDisponibles>
-      <IDias>Martes</IDias>
-      <IDias>Miercoles</IDias>
-      <IDias>Jueves</IDias>
+      <Dias>Martes</Dias>
+      <Dias>Miercoles</Dias>
+      <Dias>Jueves</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -55,10 +55,10 @@
     <Nombre>Rimolo</Nombre>
     <Matricula>111111</Matricula>
     <DiasDisponibles>
-      <IDias>Lunes</IDias>
-      <IDias>Miercoles</IDias>
-      <IDias>Viernes</IDias>
-      <IDias>Sabado</IDias>
+      <Dias>Lunes</Dias>
+      <Dias>Miercoles</Dias>
+      <Dias>Viernes</Dias>
+      <Dias>Sabado</Dias>
     </DiasDisponibles>
   </Medico>
   <Medico>
@@ -66,8 +66,8 @@
     <Nombre>Ahorro</Nombre>
     <Matricula>22334455</Matricula>
     <DiasDisponibles>
-      <IDias>Martes</IDias>
-      <IDias>Jueves</IDias>
+      <Dias>Martes</Dias>
+      <Dias>Jueves</Dias>
     </DiasDisponibles>
   </Medico>
 </ArrayOfMedico>

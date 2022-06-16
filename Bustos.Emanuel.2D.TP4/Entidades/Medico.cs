@@ -11,14 +11,14 @@ namespace Entidades
         private int legajo;
         private string nombre;
         private int matricula;
-        private List<IDias> diasDisponibles;
+        private List<Dias> diasDisponibles;
 
         public Medico()
         {
 
         }
 
-        public Medico(string nombre, int matricula, List<IDias> diasDisponibles)
+        public Medico(string nombre, int matricula, List<Dias> diasDisponibles)
         {
             this.legajo = Consultorio.GenerarSiguienteIdMedico();
             this.nombre = nombre;
@@ -44,7 +44,7 @@ namespace Entidades
             set { this.matricula = value; }
         }
 
-        public List<IDias> DiasDisponibles
+        public List<Dias> DiasDisponibles
         {
             get { return this.diasDisponibles; }
             set { this.diasDisponibles = value; }
@@ -52,7 +52,7 @@ namespace Entidades
 
         public bool EstaDisponible(int dia)
         {
-            foreach (IDias item in this.diasDisponibles)
+            foreach (Dias item in this.diasDisponibles)
             {
                 if ((int)item == dia)
                 {
