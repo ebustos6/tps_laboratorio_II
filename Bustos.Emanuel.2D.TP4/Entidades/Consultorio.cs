@@ -85,21 +85,13 @@ namespace Entidades
                 }
                 else
                 {
-                    foreach (Usuario u in usuarios)
-                    {
-                        if (u.Nombre == usuario && u.ValidarPass(pass))
-                        {
-                            return true;
-                        }
-                    }
+                    return usuarios.Exists(u => u.Nombre == usuario && u.ValidarPass(pass));
                 }   
             }
             else
             {
                 throw new ListaInexistenteException("No existe una lista de usuarios, o esta vacia.");
             }
-            
-            return false;
         }
 
         private static void AgregarHorarios()
@@ -131,7 +123,6 @@ namespace Entidades
                 {
                     ocupados.Add(item.Horario);
                 }
-
             }
 
             return ocupados;
@@ -139,36 +130,19 @@ namespace Entidades
         
         private static bool EstaOcupado(string horario, DateTime dia, int medico)
         {
-            foreach (string ocupado in HorariosOcupados(dia, medico))
-            {
-                if (horario == ocupado)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return HorariosOcupados(dia, medico).Exists(h => h == horario);
         }
         
         public static List<string> HorariosDisponibles(DateTime dia, int medico)
         {
-            List<string> horariosDisponibles = new List<string>();
             if (horarios is not null || horarios.Count > 0)
             {
-                foreach (string horario in horarios)
-                {
-                    if (!EstaOcupado(horario, dia, medico))
-                    {
-                        horariosDisponibles.Add(horario);
-                    }
-                }
+                return horarios.FindAll(h => !EstaOcupado(h, dia, medico));
             }
             else
             {
-                throw new ListaInexistenteException("No existe una lista de horarios o esta vacia");
+                throw new ListaInexistenteException("No existe una lista de horarios o esta vacia.");
             }
-            
-
-            return horariosDisponibles;
         }
 
         public static int GenerarSiguienteIdMedico()
@@ -191,15 +165,12 @@ namespace Entidades
         {
             if (medicos is not null)
             {
-                foreach (Medico dr in medicos)
-                {
-                    if (dr.Matricula == matricula)
-                    {
-                        return dr;
-                    }
-                }
+                return medicos.Find(m => m.Matricula == matricula);
             }
-            return null;
+            else
+            {
+                throw new ListaInexistenteException("No existe una lista de Medicos.");
+            }
         }
 
         public static List<Medico> ListarMedicosPorDia(int dia)
@@ -234,7 +205,6 @@ namespace Entidades
             }
             catch (Exception ex)
             {
-
                 throw new Exception(ex.InnerException.Message);
             }   
         }
@@ -259,32 +229,27 @@ namespace Entidades
 
         public static List<Turno> ListarTurnosPorFecha(DateTime dia)
         {
-            List<Turno> turnosDelDia = new List<Turno>();
-
-            foreach (Turno item in turnos)
+            if (turnos is not null)
             {
-                if (item.Fecha == dia)
-                {
-                    turnosDelDia.Add(item);
-                }
+                return turnos.FindAll(t => t.Fecha == dia);
             }
-
-            return turnosDelDia;
+            else
+            {
+                throw new ListaInexistenteException("No existe una lista de Turnos.");
+            }
         }
 
         public static List<Turno> ListarTurnosPorPaciente(int paciente)
         {
-            List<Turno> turnosDelPaciente = new List<Turno>();
-
-            foreach (Turno item in turnos)
+            if (pacientes is not null)
             {
-                if (item.Paciente == paciente)
-                {
-                    turnosDelPaciente.Add(item);
-                }
+                return turnos.FindAll(t => t.Paciente == paciente);
+            }
+            else
+            {
+                throw new ListaInexistenteException("No existe una lista de Pacientes.");
             }
 
-            return turnosDelPaciente;
         }
 
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
@@ -312,16 +277,12 @@ namespace Entidades
         {
             if (pacientes is not null)
             {
-                foreach (Paciente p in pacientes)
-                {
-                    if (p.NroObraSocial == obraSocial)
-                    {
-                        return p;
-                    }
-                }
+                return pacientes.Find(p => p.NroObraSocial == obraSocial);
             }
-            
-            return null;
+            else
+            {
+                throw new ListaInexistenteException("No existe una lista de Pacientes.");
+            }
         }
 
         public static bool CrearPaciente(string nombre, string apellido, int os)
