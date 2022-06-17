@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Entidades
 {
-    internal class ListaInexistenteException : Exception
+    public class ListaInexistenteException : Exception
     {
         public ListaInexistenteException()
         {

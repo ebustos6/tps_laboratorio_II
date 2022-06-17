@@ -183,6 +183,7 @@ namespace Entidades
             {
                 throw new ListaInexistenteException("No existe una lista de Medicos.");
             }
+
         }
 
         public static bool CrearMedico(string nombre, int matricula, List<Dias> diasDisponibles)

@@ -65,20 +65,23 @@ namespace Tests
         }
 
         [TestMethod]
-        public void BuscarMedicoPorMatricula_ListaMedicosVacia_DeberiaRetornarNull()
+        [ExpectedException(typeof(ListaInexistenteException))]
+        public void BuscarMedicoPorMatricula_ListaMedicosNula_DeberiaTirarExcepcion()
         {
             Assert.IsNull(Consultorio.BuscarMedicoPorMatricula(11111));
-
+            
         }
 
         [TestMethod]
-        public void ListarMedicosPorDia_ListaMedicosVacia_DeberiaRetornarListaVacia()
+        [ExpectedException(typeof(ListaInexistenteException))]
+        public void ListarMedicosPorDia_ListaMedicosVacia_DeberiaTirarExcepcion()
         {
             CollectionAssert.AreEquivalent(Consultorio.ListarMedicosPorDia(1), new List<Medico>());
         }
 
         [TestMethod]
-        public void CrearTurno_MedicoInexistentePacienteInexistente_DeberiaRetornarFalse()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void CrearTurno_MedicoInexistentePacienteInexistente_DeberiaTirarExcepcion()
         {
             Assert.IsFalse(Consultorio.CrearTurno(123, 123, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day), "13:00"));
         }
