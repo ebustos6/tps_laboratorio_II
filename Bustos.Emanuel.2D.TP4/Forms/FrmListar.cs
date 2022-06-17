@@ -62,39 +62,47 @@ namespace Forms
 
         public void CargarDatos()
         {
-            switch (this.tipoLista)
+            try
             {
-                case 1:
-                    DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
-                    this.Text = $"Medicos disponibles para el {aux.Day}/{aux.Month}/{aux.Year}";
-                    this.dgvListado.DataSource = Consultorio.ListarMedicosPorDia((int)aux.DayOfWeek);
-                    break;
+                switch (this.tipoLista)
+                {
+                    case 1:
+                        DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                        this.Text = $"Medicos disponibles para el {aux.Day}/{aux.Month}/{aux.Year}";
+                        this.dgvListado.DataSource = Consultorio.ListarMedicosPorDia((int)aux.DayOfWeek);
+                        break;
 
-                case 2:
-                    DateTime aux2 = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
-                    this.btnAdicional.Text = "Descargar Certificado";
-                    this.btnAdicional.Enabled = true;
-                    this.btnAdicional.Show();
-                    this.Text = $"Turnos {aux2.Day}/{aux2.Month}/{aux2.Year}";
-                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux2);
-                    this.ModificarDataGrid(1);
-                    break;
+                    case 2:
+                        DateTime aux2 = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                        this.btnAdicional.Text = "Descargar Certificado";
+                        this.btnAdicional.Enabled = true;
+                        this.btnAdicional.Show();
+                        this.Text = $"Turnos {aux2.Day}/{aux2.Month}/{aux2.Year}";
+                        this.dgvListado.DataSource = Consultorio.ListarTurnosPorFecha(aux2);
+                        this.ModificarDataGrid(1);
+                        break;
 
-                case 3:
-                    this.btnAdicional.Text = "Ver Historial de Turnos";
-                    this.btnAdicional.Enabled = true;
-                    this.btnAdicional.Show();
-                    this.Text = "Pacientes";
-                    this.dgvListado.DataSource = Consultorio.Pacientes;
-                    break;
+                    case 3:
+                        this.btnAdicional.Text = "Ver Historial de Turnos";
+                        this.btnAdicional.Enabled = true;
+                        this.btnAdicional.Show();
+                        this.Text = "Pacientes";
+                        this.dgvListado.DataSource = Consultorio.Pacientes;
+                        break;
 
-                case 4:
-                    this.Text = "Medicos";
-                    this.dgvListado.DataSource = Consultorio.Medicos;
-                    break;
+                    case 4:
+                        this.Text = "Medicos";
+                        this.dgvListado.DataSource = Consultorio.Medicos;
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                this.btnVolver_Click(this, new EventArgs());
             }
             
         }
@@ -130,7 +138,6 @@ namespace Forms
                 }
                 else if (this.tipoLista == 3)
                 {
-                    
                     int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
                     Paciente paciente = Consultorio.BuscarPacientePorOS(os);
                     List<Turno> turnos = Consultorio.ListarTurnosPorPaciente(os);
@@ -146,39 +153,41 @@ namespace Forms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
-            
-            
+                this.btnVolver_Click(sender, e);
+            }   
         }
 
         private void ModificarDataGrid(int opcion)
         {
-            this.dgvListado.Columns[0].Visible = false;
-            this.dgvListado.Columns[1].Visible = false;
-            this.dgvListado.Columns[2].Visible = false;
-
-            dgvListado.Columns.Add("Nombre_Medico", "Nombre Medico");
-            dgvListado.Columns.Add("Nombre_Paciente", "Nombre Paciente");
-
-            for (int i = 0; i < dgvListado.RowCount; i++)
+            if (opcion == 1 || opcion == 2)
             {
-                Medico medico = Consultorio.BuscarMedicoPorMatricula((int)dgvListado.Rows[i].Cells[1].Value);
-                Paciente paciente = Consultorio.BuscarPacientePorOS((int)dgvListado.Rows[i].Cells[2].Value);
-                dgvListado.Rows[i].Cells["Nombre_Medico"].Value = medico.ToString();
-                dgvListado.Rows[i].Cells["Nombre_Paciente"].Value = $"{paciente.Apellido} {paciente.Nombre}";
+                this.dgvListado.Columns[0].Visible = false;
+                this.dgvListado.Columns[1].Visible = false;
+                this.dgvListado.Columns[2].Visible = false;
 
-            }
+                dgvListado.Columns.Add("Nombre_Medico", "Nombre Medico");
+                dgvListado.Columns.Add("Nombre_Paciente", "Nombre Paciente");
 
-            if (opcion == 1)
-            {
-                this.dgvListado.Columns[3].Visible = false;
-            }
-            else
-            {
-                this.dgvListado.Columns["Nombre_Paciente"].Visible = false;
-            }
+                for (int i = 0; i < dgvListado.RowCount; i++)
+                {
+                    Medico medico = Consultorio.BuscarMedicoPorMatricula((int)dgvListado.Rows[i].Cells[1].Value);
+                    Paciente paciente = Consultorio.BuscarPacientePorOS((int)dgvListado.Rows[i].Cells[2].Value);
+                    dgvListado.Rows[i].Cells["Nombre_Medico"].Value = medico.ToString();
+                    dgvListado.Rows[i].Cells["Nombre_Paciente"].Value = $"{paciente.Apellido} {paciente.Nombre}";
 
-            this.dgvListado.Refresh();
+                }
+
+                if (opcion == 1)
+                {
+                    this.dgvListado.Columns[3].Visible = false;
+                }
+                else
+                {
+                    this.dgvListado.Columns["Nombre_Paciente"].Visible = false;
+                }
+
+                this.dgvListado.Refresh();
+            }
         }
     }
 }
