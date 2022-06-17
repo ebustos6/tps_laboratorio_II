@@ -175,20 +175,14 @@ namespace Entidades
 
         public static List<Medico> ListarMedicosPorDia(int dia)
         {
-            List<Medico> medicosDisponibles = new List<Medico>();
-
             if (medicos is not null)
             {
-                foreach (Medico dr in medicos)
-                {
-                    if (dr.EstaDisponible(dia))
-                    {
-                        medicosDisponibles.Add(dr);
-                    }
-                }
+                return medicos.FindAll(m => m.EstaDisponible(dia));
             }
-
-            return medicosDisponibles;
+            else
+            {
+                throw new ListaInexistenteException("No existe una lista de Medicos.");
+            }
         }
 
         public static bool CrearMedico(string nombre, int matricula, List<Dias> diasDisponibles)
