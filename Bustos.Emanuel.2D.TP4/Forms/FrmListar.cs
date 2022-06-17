@@ -22,29 +22,6 @@ namespace Forms
             this.tipoLista = tipoLista;
         }
 
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-            if (this.tipoLista == 3 || this.tipoLista == 5)
-            {
-                FrmABM p = new FrmABM(false);
-                p.Show();
-                this.Close();
-            }
-            else if (this.tipoLista == 4)
-            {
-                FrmABM m = new FrmABM(true);
-                m.Show();
-                this.Close();
-            }
-            else
-            {
-                FrmDia dia = new FrmDia(this.dia);
-                dia.Show();
-                this.Close();
-            }
-            
-        }
-
         private void FrmListar_Load(object sender, EventArgs e)
         {
             this.btnAdicional.Enabled = false;
@@ -52,9 +29,39 @@ namespace Forms
             this.CargarDatos();
         }
 
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            switch (this.tipoLista)
+            {
+                case 3:
+                    FrmABM p = new FrmABM(false);
+                    p.Show();
+                    this.Close();
+                    break;
+
+                case 4:
+                    FrmABM m = new FrmABM(true);
+                    m.Show();
+                    this.Close();
+                    break;
+
+                case 5:
+                    this.tipoLista = 3;
+                    FrmListar l = new FrmListar(this.dia, 3);
+                    l.Show();
+                    this.Close();
+                    break;
+
+                default:
+                    FrmDia dia = new FrmDia(this.dia);
+                    dia.Show();
+                    this.Close();
+                    break;
+            }   
+        }
+
         public void CargarDatos()
         {
-            
             switch (this.tipoLista)
             {
                 case 1:
@@ -96,13 +103,13 @@ namespace Forms
         {
             try
             {
-                if (this.tipoLista == 2)
+                if (this.tipoLista == 2 || this.tipoLista == 5)
                 {
                     if (this.dgvListado.SelectedRows.Count > 0)
                     {
                         int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
                         int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
-                        DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes, this.dia);
+                        DateTime aux = (DateTime)this.dgvListado.SelectedRows[0].Cells[3].Value;
                         string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
 
                         if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
@@ -134,36 +141,10 @@ namespace Forms
                     this.ModificarDataGrid(2);
                     this.btnAdicional.Text = "Descargar Certificado";
                     this.tipoLista = 5;
-
-                }
-                else if (this.tipoLista == 5)
-                {
-                    if (this.dgvListado.SelectedRows.Count > 0)
-                    {
-                        int paciente = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
-                        int medico = (int)this.dgvListado.SelectedRows[0].Cells[1].Value;
-                        DateTime fecha = (DateTime)this.dgvListado.SelectedRows[0].Cells[3].Value;
-                        string horario = (string)this.dgvListado.SelectedRows[0].Cells[4].Value;
-
-                        if (Consultorio.BuscarPacientePorOS(paciente) is not null && Consultorio.BuscarMedicoPorMatricula(medico) is not null)
-                        {
-                            Certificado.Escribir(Consultorio.BuscarPacientePorOS(paciente), Consultorio.BuscarMedicoPorMatricula(medico), fecha, horario);
-                            MessageBox.Show("El certificado ha sido emitido con exito.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error.");
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No hay ningun certificado seleccionado.");
-                    }
-                }
+                }               
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
             
