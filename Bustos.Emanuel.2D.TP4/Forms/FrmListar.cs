@@ -123,10 +123,13 @@ namespace Forms
                 }
                 else if (this.tipoLista == 3)
                 {
+                    
                     int os = (int)this.dgvListado.SelectedRows[0].Cells[2].Value;
                     Paciente paciente = Consultorio.BuscarPacientePorOS(os);
+                    List<Turno> turnos = Consultorio.ListarTurnosPorPaciente(os);
+                    turnos.Sort((x, y) => x.Fecha.CompareTo(y.Fecha));
                     this.Text = $"Turnos del Paciente {paciente.Nombre} {paciente.Apellido}";
-                    this.dgvListado.DataSource = Consultorio.ListarTurnosPorPaciente(os);
+                    this.dgvListado.DataSource = turnos;
                     this.dgvListado.Refresh();
                     this.ModificarDataGrid(2);
                     this.btnAdicional.Text = "Descargar Certificado";
