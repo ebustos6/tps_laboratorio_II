@@ -30,10 +30,9 @@ namespace Entidades
             usuarios = new List<Usuario>();
             AgregarUsuarios();
             horarios = new List<string>();
-            AgregarHorarios();
-            medicos = SerializacionXml<List<Medico>>.Deserializar("Medicos");
-            turnos = AccesoDB.LeerTurnos();
-            pacientes = AccesoDB.LeerPacientes();
+            medicos = new List<Medico>();
+            turnos = new List<Turno>();
+            pacientes = new List<Paciente>();
         }
 
         public static List<string> Horarios
@@ -56,6 +55,18 @@ namespace Entidades
         public static List<Paciente> Pacientes
         {
             get { return pacientes; }
+        }
+
+        public static void ImportarXML()
+        {
+            ImportarHorarios();
+            ImportarMedicos();
+        }
+
+        public static void ImportarDB()
+        {
+            ImportarPacientes();
+            ImportarTurnos();
         }
 
         /// <summary>
@@ -94,24 +105,18 @@ namespace Entidades
             }
         }
 
-        private static void AgregarHorarios()
+        private static void ImportarHorarios()
         {
-            horarios.Add("9:00");
-            horarios.Add("9:30");
-            horarios.Add("10:00");
-            horarios.Add("10:30");
-            horarios.Add("11:00");
-            horarios.Add("11:30");
-            horarios.Add("12:00");
-            horarios.Add("12:30");
-            horarios.Add("13:00");
-            horarios.Add("13:30");
-            horarios.Add("14:00");
-            horarios.Add("14:30");
-            horarios.Add("15:00");
-            horarios.Add("15:30");
-            horarios.Add("16:00");
-            horarios.Add("16:30");
+            try
+            {
+                horarios = SerializacionXml<List<string>>.Deserializar("Horarios");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.InnerException.Message);
+            }
         }
 
         private static List<string> HorariosOcupados(DateTime dia, int medico)
@@ -142,6 +147,20 @@ namespace Entidades
             else
             {
                 throw new ListaInexistenteException("No existe una lista de horarios o esta vacia.");
+            }
+        }
+
+        private static void ImportarMedicos()
+        {
+            try
+            {
+                medicos = SerializacionXml<List<Medico>>.Deserializar("Medicos");
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.InnerException.Message);
             }
         }
 
@@ -204,6 +223,19 @@ namespace Entidades
             }   
         }
 
+        private static void ImportarTurnos()
+        {
+            try
+            {
+                turnos = AccesoDB.LeerTurnos();
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.InnerException.Message);
+            } 
+        }
+
         private static int GenerarSiguienteIdTurno()
         {
             int id = 0;
@@ -263,6 +295,19 @@ namespace Entidades
             catch (Exception ex)
             {
 
+                throw new Exception(ex.InnerException.Message);
+            }
+            
+        }
+
+        private static void ImportarPacientes()
+        {
+            try
+            {
+                pacientes = AccesoDB.LeerPacientes();
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.InnerException.Message);
             }
             

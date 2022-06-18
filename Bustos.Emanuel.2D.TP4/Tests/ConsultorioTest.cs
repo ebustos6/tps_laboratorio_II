@@ -49,7 +49,8 @@ namespace Tests
         }
 
         [TestMethod]
-        public void HorariosDisponibles_MedicoInexistente_DeberiaSerIgualAListaHorarios()
+        [ExpectedException(typeof(ListaInexistenteException))]
+        public void HorariosDisponibles_ListaTurnosVacia_DeberiaTirarExcepcion()
         {
             List<string> aux2 = Consultorio.Horarios;
             List<string> aux = Consultorio.HorariosDisponibles(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day), 6666);
@@ -65,23 +66,20 @@ namespace Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ListaInexistenteException))]
-        public void BuscarMedicoPorMatricula_ListaMedicosNula_DeberiaTirarExcepcion()
+        public void BuscarMedicoPorMatricula_ListaMedicosVacia_DeberiaDevolverNull()
         {
             Assert.IsNull(Consultorio.BuscarMedicoPorMatricula(11111));
             
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ListaInexistenteException))]
-        public void ListarMedicosPorDia_ListaMedicosVacia_DeberiaTirarExcepcion()
+        public void ListarMedicosPorDia_ListaMedicosVacia_DeberiaDevolverListaVacia()
         {
             CollectionAssert.AreEquivalent(Consultorio.ListarMedicosPorDia(1), new List<Medico>());
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
-        public void CrearTurno_MedicoInexistentePacienteInexistente_DeberiaTirarExcepcion()
+        public void CrearTurno_ListaMedicosVaciaListaPacienteVacia_DeberiaDevolverFalse()
         {
             Assert.IsFalse(Consultorio.CrearTurno(123, 123, new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day), "13:00"));
         }
@@ -93,7 +91,8 @@ namespace Tests
         }
 
         [TestMethod]
-        public void CrearPaciente_PacienteExistente_DeberiaRetornarFalse()
+        [ExpectedException(typeof(NullReferenceException))]
+        public void CrearPaciente_PacienteExistente_DeberiaTirarExcepcion()
         {
             Assert.IsFalse(Consultorio.CrearPaciente("Erick", "Cartman", 666));
         }

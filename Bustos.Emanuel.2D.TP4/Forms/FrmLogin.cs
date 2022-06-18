@@ -77,10 +77,45 @@ namespace Forms
 
         }
 
+        /// <summary>
+        /// Ingresa datos precargados para loggearse.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUsuario_Click(object sender, EventArgs e)
         {
             this.txtUsuario.Text = "Ema";
             this.txtPass.Text = "123";
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            this.ImportarRecursos();
+        }
+
+        private void ImportarRecursos()
+        {
+            try
+            {
+                List<Task> tareas = new List<Task>()
+                {
+                new Task(Consultorio.ImportarXML),
+                new Task(Consultorio.ImportarDB),
+                };
+
+                tareas.ForEach(t => t.Start());
+
+                Task.WaitAll(tareas.ToArray());
+            }
+            catch (NullReferenceException en)
+            {
+                MessageBox.Show(en.Message);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

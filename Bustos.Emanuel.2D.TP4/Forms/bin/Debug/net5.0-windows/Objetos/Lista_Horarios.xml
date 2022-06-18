@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string>9:00</string>
+  <string>9:30</string>
+  <string>10:00</string>
+  <string>10:30</string>
+  <string>11:00</string>
+  <string>11:30</string>
+  <string>12:00</string>
+  <string>12:30</string>
+  <string>13:00</string>
+  <string>13:30</string>
+  <string>14:00</string>
+  <string>14:30</string>
+  <string>15:00</string>
+  <string>15:30</string>
+  <string>16:00</string>
+  <string>16:30</string>
+</ArrayOfString>
