@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class FrmTurno
+    partial class FrmAltaTurno
     {
         /// <summary>
         /// Required designer variable.

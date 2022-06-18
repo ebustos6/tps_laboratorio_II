@@ -31,8 +31,6 @@ namespace Forms
 
         private void btnVerMedicos_Click(object sender, EventArgs e)
         {
-            //DateTime aux = new DateTime(FrmCalendario.Anio, FrmCalendario.Mes,this.dia);
-            //MessageBox.Show($"{((int)aux.DayOfWeek)} = {(int)Entidades.IDias.Martes}");
             FrmListar m = new FrmListar(this.dia, 1);
             m.Show();
             this.Close();
@@ -40,7 +38,7 @@ namespace Forms
 
         private void btnAgendar_Click(object sender, EventArgs e)
         {
-            FrmTurno t = new FrmTurno(this.dia);
+            FrmAltaTurno t = new FrmAltaTurno(this.dia);
             t.Show();
             this.Close();
         }

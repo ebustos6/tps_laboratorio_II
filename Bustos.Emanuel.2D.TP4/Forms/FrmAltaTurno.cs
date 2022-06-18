@@ -11,10 +11,10 @@ using Entidades;
 
 namespace Forms
 {
-    public partial class FrmTurno : Form,ICargarDataGrid
+    public partial class FrmAltaTurno : Form,ICargarDataGrid
     {
         private int dia;
-        public FrmTurno(int dia)
+        public FrmAltaTurno(int dia)
         {
             InitializeComponent();
             this.dia = dia; 
