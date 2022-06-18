@@ -35,6 +35,9 @@ namespace Entidades
             pacientes = new List<Paciente>();
         }
 
+        /// <summary>
+        /// Getter de lista de horarios de atencion del Consultorio.
+        /// </summary>
         public static List<string> Horarios
         {
             get
@@ -47,22 +50,34 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Getter de lista de medicos del Consultorio.
+        /// </summary>
         public static List<Medico> Medicos
         {
             get { return medicos; }
         }
 
+        /// <summary>
+        /// Getter de lista de medicos del Consultorio.
+        /// </summary>
         public static List<Paciente> Pacientes
         {
             get { return pacientes; }
         }
 
+        /// <summary>
+        /// Llama a los metodos para importar de un XML horarios y medicos.
+        /// </summary>
         public static void ImportarXML()
         {
             ImportarHorarios();
             ImportarMedicos();
         }
 
+        /// <summary>
+        /// Llama a los metodos para importar de una DB pacientes y turnos.
+        /// </summary>
         public static void ImportarDB()
         {
             ImportarPacientes();
@@ -81,11 +96,13 @@ namespace Entidades
         }
 
         /// <summary>
-        /// recorre la lista de usuarios y verifica que los parametros ingresados correspondan a un usuario valido.
+        /// Recorre la lista de usuarios y verifica que los parametros ingresados correspondan a un usuario valido.
         /// </summary>
         /// <param name="usuario"></param>
         /// <param name="pass"></param>
-        /// <returns>devuelve un bool informando si se logro o no</returns>
+        /// <returns>Un bool indicando si se logro o no.</returns>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static bool LoggearUsuario(string usuario, string pass)
         {
             if (usuarios is not null && usuarios.Count > 0)
@@ -105,6 +122,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Llama al metodo encargado de deserializar una lista de horarios y lo asigna a la lista creada en esta clase.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private static void ImportarHorarios()
         {
             try
@@ -119,6 +140,12 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Recorre la lista de horarios buscando si los parametros ingresados coinciden.
+        /// </summary>
+        /// <param name="dia"></param>
+        /// <param name="medico"></param>
+        /// <returns>Una lista con los horarios que coinciden.</returns>
         private static List<string> HorariosOcupados(DateTime dia, int medico)
         {
             List<string> ocupados = new List<string>();
@@ -132,12 +159,26 @@ namespace Entidades
 
             return ocupados;
         }
-        
+
+        /// <summary>
+        /// Recorre la lista de horarios buscando si los parametros ingresados coinciden.
+        /// </summary>
+        /// <param name="horario"></param>
+        /// <param name="dia"></param>
+        /// <param name="medico"></param>
+        /// <returns>Un bool indicando si existen o no.</returns>
         private static bool EstaOcupado(string horario, DateTime dia, int medico)
         {
             return HorariosOcupados(dia, medico).Exists(h => h == horario);
         }
-        
+
+        /// <summary>
+        /// Recorre la lista de horarios buscando si los parametros ingresados coinciden.
+        /// </summary>
+        /// <param name="dia"></param>
+        /// <param name="medico"></param>
+        /// <returns>Una lista con los horarios que no coinciden.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static List<string> HorariosDisponibles(DateTime dia, int medico)
         {
             if (horarios is not null || horarios.Count > 0)
@@ -150,6 +191,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Llama al metodo encargado de deserializar una lista de medicos y lo asigna a la lista creada en esta clase.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private static void ImportarMedicos()
         {
             try
@@ -164,6 +209,10 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Recorre la lista de medicos buscando el numero de legajo mas alto y le suma 1.
+        /// </summary>
+        /// <returns>Un int con el nuevo legajo.</returns>
         public static int GenerarSiguienteIdMedico()
         {
             int id = 10000;
@@ -180,6 +229,12 @@ namespace Entidades
             return id + 1;
         }
 
+        /// <summary>
+        /// Recorre la lista de medicos buscando si el parametro ingresado coincide.
+        /// </summary>
+        /// <param name="matricula"></param>
+        /// <returns>Un objeto de tipo Medico.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static Medico BuscarMedicoPorMatricula(int matricula)
         {
             if (medicos is not null)
@@ -192,6 +247,12 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Recorre la lista de medicos buscando si el parametro ingresado coincide.
+        /// </summary>
+        /// <param name="dia"></param>
+        /// <returns>Una lista de Medicos.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static List<Medico> ListarMedicosPorDia(int dia)
         {
             if (medicos is not null)
@@ -205,6 +266,14 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Valida los datos ingresados por parametros y con ellos crea un Medico en la lista y actualiza su archivoXML correspondiente.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="matricula"></param>
+        /// <param name="diasDisponibles"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static bool CrearMedico(string nombre, int matricula, List<Dias> diasDisponibles)
         {
             try
@@ -223,6 +292,10 @@ namespace Entidades
             }   
         }
 
+        /// <summary>
+        /// Llama al metodo encargado de leer la DB de turnos y lo asigna a la lista creada en esta clase.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private static void ImportarTurnos()
         {
             try
@@ -236,6 +309,10 @@ namespace Entidades
             } 
         }
 
+        /// <summary>
+        /// Recorre la lista de turnos buscando el numero de Id mas alto y le suma 1.
+        /// </summary>
+        /// <returns>Un int con el nuevo Id.</returns>
         private static int GenerarSiguienteIdTurno()
         {
             int id = 0;
@@ -254,6 +331,12 @@ namespace Entidades
             return id + 1;
         }
 
+        /// <summary>
+        /// Recorre la lista de turnos buscando si el parametro ingresado coincide.
+        /// </summary>
+        /// <param name="dia"></param>
+        /// <returns>Una lista de Turnos.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static List<Turno> ListarTurnosPorFecha(DateTime dia)
         {
             if (turnos is not null)
@@ -266,6 +349,12 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Recorre la lista de turnos buscando si el parametro ingresado coincide.
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <returns>Una lista de Turnos.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static List<Turno> ListarTurnosPorPaciente(int paciente)
         {
             if (pacientes is not null)
@@ -279,6 +368,15 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Valida los datos ingresados por parametros y con ellos crea un Turno en la lista y en la DB.
+        /// </summary>
+        /// <param name="medico"></param>
+        /// <param name="paciente"></param>
+        /// <param name="fecha"></param>
+        /// <param name="horario"></param>
+        /// <returns>Un bool indicando si se logro o no.</returns>
+        /// <exception cref="Exception"></exception>
         public static bool CrearTurno(int medico, int paciente, DateTime fecha, string horario)
         {
             try
@@ -300,6 +398,10 @@ namespace Entidades
             
         }
 
+        /// <summary>
+        /// Llama al metodo encargado de leer la DB de pacientes y lo asigna a la lista creada en esta clase.
+        /// </summary>
+        /// <exception cref="Exception"></exception>
         private static void ImportarPacientes()
         {
             try
@@ -313,6 +415,12 @@ namespace Entidades
             
         }
 
+        /// <summary>
+        /// Recorre la lista de pacientes buscando si el parametro ingresado coincide.
+        /// </summary>
+        /// <param name="obraSocial"></param>
+        /// <returns>Un objeto de tipo Paciente.</returns>
+        /// <exception cref="ListaInexistenteException"></exception>
         public static Paciente BuscarPacientePorOS(int obraSocial)
         {
             if (pacientes is not null)
@@ -325,6 +433,14 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Valida los datos ingresados por parametros y con ellos crea un Paciente en la lista y en la DB.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <param name="apellido"></param>
+        /// <param name="os"></param>
+        /// <returns>Un bool informado si se logro o no.</returns>
+        /// <exception cref="Exception"></exception>
         public static bool CrearPaciente(string nombre, string apellido, int os)
         {
             try

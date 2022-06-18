@@ -18,6 +18,12 @@ namespace Entidades
             ruta += @"/Objetos";
         }
 
+        /// <summary>
+        /// Serializa a XML el Objeto Generico ingresado por parametro.
+        /// </summary>
+        /// <param name="dato"></param>
+        /// <param name="archivo"></param>
+        /// <exception cref="Exception"></exception>
         public static void Serializar(T dato, string archivo)
         {
             string nombreArchivo = ruta + @"/Lista_" + archivo + ".xml";
@@ -43,6 +49,12 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Desearializa un archivo XML buscandolo por el string ingresado por parametro.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns>Un objeto.</returns>
+        /// <exception cref="Exception"></exception>
         public static T Deserializar(string nombre)
         {
             string archivo = string.Empty;

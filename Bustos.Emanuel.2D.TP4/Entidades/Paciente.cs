@@ -20,16 +20,25 @@ namespace Entidades
             this.nroObraSocial = nroObraSocial;
         }
 
+        /// <summary>
+        /// Getter Nombre.
+        /// </summary>
         public string Nombre
         {
             get { return nombre; }
         }
 
+        /// <summary>
+        /// Getter Apellido.
+        /// </summary>
         public string Apellido 
         { 
             get { return apellido; }
         }
 
+        /// <summary>
+        /// Getter Obra Social.
+        /// </summary>
         public int NroObraSocial 
         { 
             get { return nroObraSocial; }

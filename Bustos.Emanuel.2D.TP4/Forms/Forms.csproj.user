@@ -25,7 +25,7 @@
     <Compile Update="FrmMenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FrmTurno.cs">
+    <Compile Update="FrmAltaTurno.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="UscBlanco.cs">

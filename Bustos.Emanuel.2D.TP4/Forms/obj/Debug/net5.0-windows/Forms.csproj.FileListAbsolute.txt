@@ -43,7 +43,6 @@ C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\For
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmListar.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmLogin.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmMenuPrincipal.resources
-C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmTurno.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.Properties.Resources.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.UscBlanco.resources
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.UscDia.resources
@@ -66,3 +65,4 @@ C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\For
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\bin\Debug\net5.0-windows\runtimes\win-x86\native\sni.dll
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Administrator\source\repos\tps_laboratorio_II\Bustos.Emanuel.2D.TP4\Forms\obj\Debug\net5.0-windows\Forms.FrmAltaTurno.resources

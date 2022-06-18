@@ -22,6 +22,11 @@ namespace Entidades
             command.Connection = connection;
         }
 
+        /// <summary>
+        /// hace un SELECT en la DB de Pacientes.
+        /// </summary>
+        /// <returns>Una lista de Pacientes</returns>
+        /// <exception cref="Exception"></exception>
         public static List<Paciente> LeerPacientes()
         {
             List<Paciente> pacientes = new List<Paciente>();
@@ -52,6 +57,11 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Hace un Insert en la DB de Pacientes con el Paciente insertado por parametros.
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <exception cref="Exception"></exception>
         public static void GuardarPaciente(Paciente paciente)
         {
             try
@@ -74,6 +84,11 @@ namespace Entidades
             }
         }
 
+        /// <summary>
+        /// Hace un SELECT en la DB de Turnos.
+        /// </summary>
+        /// <returns>Una lista de Turnos.</returns>
+        /// <exception cref="Exception"></exception>
         public static List<Turno> LeerTurnos()
         {
             List<Turno> turnos = new List<Turno>();
@@ -104,6 +119,11 @@ namespace Entidades
 
         }
 
+        /// <summary>
+        /// Hace un Insert en la DB de Turnos con el Turno ingresado por parametros.
+        /// </summary>
+        /// <param name="turno"></param>
+        /// <exception cref="Exception"></exception>
         public static void GuardarTurno(Turno turno)
         {
             try

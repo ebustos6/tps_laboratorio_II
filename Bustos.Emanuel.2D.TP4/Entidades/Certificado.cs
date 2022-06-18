@@ -17,6 +17,14 @@ namespace Entidades
             ruta += @"/Certificados de Atencion";
         }
 
+        /// <summary>
+        /// Crea un txt con los parametros ingresados.
+        /// </summary>
+        /// <param name="paciente"></param>
+        /// <param name="medico"></param>
+        /// <param name="fecha"></param>
+        /// <param name="horario"></param>
+        /// <exception cref="Exception"></exception>
         public static void Escribir(Paciente paciente, Medico medico, DateTime fecha, string horario)
         {
             string nombreArchivo = ruta + @"/Certificado_" + paciente.NroObraSocial.ToString() + $"_{fecha.Day}_{fecha.Month}_{fecha.Year}.txt";
