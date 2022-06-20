@@ -18,11 +18,21 @@ namespace Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Cierra la aplicacion.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSalir_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
+        /// <summary>
+        /// Instancia un FrmCalendario y cierra este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCalendario_Click(object sender, EventArgs e)
         {
             FrmCalendario c = new FrmCalendario();
@@ -30,6 +40,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Instancia un FrmAMB para medicos y cierra este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnMedicos_Click(object sender, EventArgs e)
         {
             FrmABM a = new FrmABM(true);
@@ -37,6 +52,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Instancia un FrmAMB para pacientes y cierra este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPacientes_Click(object sender, EventArgs e)
         {
             FrmABM a = new FrmABM(false);
@@ -44,11 +64,20 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Modifica el lbl de ultimoPaciente.
+        /// </summary>
+        /// <param name="actualizacion"></param>
         public void RecibirActualizacion(string actualizacion)
         {
-            this.lblUltimoPaciente.Text =$"Ultimo paciente ingresado: {actualizacion}";
+            this.lblUltimoPaciente.Text = $"Ultimo paciente ingresado: {actualizacion}";
         }
 
+        /// <summary>
+        /// Modifica la apariencia del form y asocia el metodo RecibirActualizacion al evento PacienteActualizado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
             this.lblUltimoPaciente.ForeColor = Color.White;
