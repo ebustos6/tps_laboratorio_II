@@ -29,6 +29,10 @@ namespace Forms
 
         private void FrmTurno_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
+            this.lblHorario.ForeColor = Color.White;
+            this.lblMedicos.ForeColor = Color.White;
+            this.lblPacientes.ForeColor = Color.White;
             this.CargarDatos();
             this.lbxHorarios.Enabled = false;
             this.dgvListadoMedicos.Enabled = true;

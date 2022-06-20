@@ -63,18 +63,18 @@ namespace Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream audioError {
+        internal static System.IO.UnmanagedMemoryStream audioNope {
             get {
-                return ResourceManager.GetStream("audioError", resourceCulture);
+                return ResourceManager.GetStream("audioNope", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream audioZugZug {
+        internal static System.IO.UnmanagedMemoryStream audioOk {
             get {
-                return ResourceManager.GetStream("audioZugZug", resourceCulture);
+                return ResourceManager.GetStream("audioOk", resourceCulture);
             }
         }
     }

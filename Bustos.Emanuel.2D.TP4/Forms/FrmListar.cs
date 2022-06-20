@@ -24,6 +24,7 @@ namespace Forms
 
         private void FrmListar_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
             this.btnAdicional.Enabled = false;
             this.btnAdicional.Hide();
             this.CargarDatos();

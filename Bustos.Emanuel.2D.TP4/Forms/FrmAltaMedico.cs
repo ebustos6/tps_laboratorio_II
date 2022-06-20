@@ -37,6 +37,12 @@ namespace Forms
 
         private void FrmAltaMedico_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
+            this.lblDiasDisponibles.ForeColor = Color.White;
+            this.lblMatricula.ForeColor = Color.White;
+            this.lblNombre.ForeColor = Color.White;
+            this.clbDiasDisponibles.BackColor = this.BackColor;
+            this.clbDiasDisponibles.ForeColor = Color.White;
             this.clbDiasDisponibles.Items.AddRange(new[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" });
         }
 

@@ -42,6 +42,15 @@ namespace Forms
 
         private void FrmCalendario_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
+            this.lblMes.ForeColor = Color.White;
+            this.lblDomingo.ForeColor = Color.White;
+            this.lblLunes.ForeColor = Color.White;
+            this.lblMartes.ForeColor = Color.White;
+            this.lblMiercoles.ForeColor = Color.White;
+            this.lblJueves.ForeColor = Color.White;
+            this.lblViernes.ForeColor = Color.White;
+            this.lblSabado.ForeColor = Color.White;
             this.MostrarDias();
         }
 

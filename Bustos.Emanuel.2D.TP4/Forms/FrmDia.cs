@@ -26,6 +26,7 @@ namespace Forms
 
         private void FrmDia_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
             this.Text = $"{this.dia}/{FrmCalendario.Mes}/{FrmCalendario.Anio}";
         }
 

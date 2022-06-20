@@ -44,5 +44,13 @@ namespace Entidades
             get { return nroObraSocial; }
         }
 
+        /// <summary>
+        /// Sobrecarga del metodo ToString()
+        /// </summary>
+        /// <returns>Apellido y Nombre del paciente.</returns>
+        public override string ToString()
+        {
+            return $"{this.apellido}, {this.nombre}";
+        }
     }
 }

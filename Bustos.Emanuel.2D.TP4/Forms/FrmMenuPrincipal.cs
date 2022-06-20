@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entidades;
 
 namespace Forms
 {
@@ -42,5 +43,20 @@ namespace Forms
             a.Show();
             this.Close();
         }
+
+        public void RecibirActualizacion(string actualizacion)
+        {
+            this.lblUltimoPaciente.Text =$"Ultimo paciente ingresado: {actualizacion}";
+        }
+
+        private void FrmMenuPrincipal_Load(object sender, EventArgs e)
+        {
+            this.lblUltimoPaciente.ForeColor = Color.White;
+            this.BackColor = Color.Black;
+            Consultorio.PacienteActualizado += this.RecibirActualizacion;
+            Consultorio.EnviarActualizacionPaciente();
+        }
+
+
     }
 }

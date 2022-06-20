@@ -32,11 +32,12 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnMedicos = new System.Windows.Forms.Button();
             this.btnPacientes = new System.Windows.Forms.Button();
+            this.lblUltimoPaciente = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCalendario
             // 
-            this.btnCalendario.Location = new System.Drawing.Point(47, 23);
+            this.btnCalendario.Location = new System.Drawing.Point(38, 74);
             this.btnCalendario.Name = "btnCalendario";
             this.btnCalendario.Size = new System.Drawing.Size(394, 92);
             this.btnCalendario.TabIndex = 0;
@@ -46,7 +47,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(47, 464);
+            this.btnSalir.Location = new System.Drawing.Point(38, 464);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(394, 92);
             this.btnSalir.TabIndex = 1;
@@ -56,7 +57,7 @@
             // 
             // btnMedicos
             // 
-            this.btnMedicos.Location = new System.Drawing.Point(47, 170);
+            this.btnMedicos.Location = new System.Drawing.Point(38, 204);
             this.btnMedicos.Name = "btnMedicos";
             this.btnMedicos.Size = new System.Drawing.Size(394, 92);
             this.btnMedicos.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // btnPacientes
             // 
-            this.btnPacientes.Location = new System.Drawing.Point(47, 317);
+            this.btnPacientes.Location = new System.Drawing.Point(38, 334);
             this.btnPacientes.Name = "btnPacientes";
             this.btnPacientes.Size = new System.Drawing.Size(394, 92);
             this.btnPacientes.TabIndex = 3;
@@ -74,12 +75,22 @@
             this.btnPacientes.UseVisualStyleBackColor = true;
             this.btnPacientes.Click += new System.EventHandler(this.btnPacientes_Click);
             // 
+            // lblUltimoPaciente
+            // 
+            this.lblUltimoPaciente.AutoSize = true;
+            this.lblUltimoPaciente.Location = new System.Drawing.Point(38, 19);
+            this.lblUltimoPaciente.Name = "lblUltimoPaciente";
+            this.lblUltimoPaciente.Size = new System.Drawing.Size(134, 25);
+            this.lblUltimoPaciente.TabIndex = 4;
+            this.lblUltimoPaciente.Text = "Ultimo Paciente";
+            // 
             // FrmMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 573);
+            this.ClientSize = new System.Drawing.Size(459, 568);
             this.ControlBox = false;
+            this.Controls.Add(this.lblUltimoPaciente);
             this.Controls.Add(this.btnPacientes);
             this.Controls.Add(this.btnMedicos);
             this.Controls.Add(this.btnSalir);
@@ -91,7 +102,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Principal";
+            this.Load += new System.EventHandler(this.FrmMenuPrincipal_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -101,5 +114,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnMedicos;
         private System.Windows.Forms.Button btnPacientes;
+        private System.Windows.Forms.Label lblUltimoPaciente;
     }
 }

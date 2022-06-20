@@ -63,6 +63,12 @@ namespace Forms
             }
         }
 
-        
+        private void FrmAltaPaciente_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Color.Black;
+            this.lblApellido.ForeColor = Color.White;
+            this.lblNombre.ForeColor = Color.White;
+            this.lblObraSocial.ForeColor = Color.White;
+        }
     }
 }

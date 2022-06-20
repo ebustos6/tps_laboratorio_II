@@ -25,6 +25,10 @@ namespace Entidades
         private static List<Turno> turnos;
         private static List<Paciente> pacientes;
 
+        public delegate void PacientesHandler(string ultimoPaciente);
+        public static event PacientesHandler PacienteActualizado;
+
+
         static Consultorio()
         {
             usuarios = new List<Usuario>();
@@ -396,6 +400,17 @@ namespace Entidades
                 throw new Exception(ex.InnerException.Message);
             }
             
+        }
+
+        /// <summary>
+        /// Si el evento PacienteActualizado tiene suscriptores, devuelve el nombre del ultimo paciente ingresado.
+        /// </summary>
+        public static void EnviarActualizacionPaciente()
+        {
+            if (PacienteActualizado is not null)
+            {
+                PacienteActualizado.Invoke(pacientes.Last<Paciente>().ToString());
+            }
         }
 
         /// <summary>

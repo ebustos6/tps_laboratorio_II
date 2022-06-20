@@ -19,8 +19,8 @@ namespace Forms
         public FrmLogin()
         {
             InitializeComponent();
-            this.ok = new SoundPlayer(Properties.Resources.audioZugZug);
-            this.no = new SoundPlayer(Properties.Resources.audioError);
+            this.ok = new SoundPlayer(Properties.Resources.audioOk);
+            this.no = new SoundPlayer(Properties.Resources.audioNope);
         }
 
         /// <summary>
@@ -90,6 +90,9 @@ namespace Forms
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            this.lblPass.ForeColor = Color.White;
+            this.lblUsuario.ForeColor = Color.White;
+            this.BackColor = Color.Black;
             this.ImportarRecursos();
         }
 

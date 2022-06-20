@@ -44,6 +44,7 @@ namespace Forms
 
         private void FrmABM_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
             if (esMedico)
             {
                 this.Text = "Medicos";
