@@ -20,6 +20,11 @@ namespace Forms
             this.dia = dia; 
         }
 
+        /// <summary>
+        /// Invoca un FrmDia y cierra el form activo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmDia dia = new FrmDia(this.dia);
@@ -27,6 +32,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Modifica aspectos esteticos del form y llama al metodo CargarDatos.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmTurno_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;
@@ -38,6 +48,9 @@ namespace Forms
             this.dgvListadoMedicos.Enabled = true;
         }
 
+        /// <summary>
+        /// Ingresa los datos en los datagrids y en el listbox.
+        /// </summary>
         public void CargarDatos()
         {
             try
@@ -56,6 +69,11 @@ namespace Forms
             
         }
 
+        /// <summary>
+        /// Fija a un medico del datagrid y trae los horarios disponibles de este.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSeleccionarMedico_Click(object sender, EventArgs e)
         {
             try
@@ -73,6 +91,11 @@ namespace Forms
             }          
         }
 
+        /// <summary>
+        /// Valida los datos ingresados y crea un turno.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCrearTurno_Click(object sender, EventArgs e)
         {
             if (dgvListadoMedicos.Enabled)
@@ -102,6 +125,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Deselecciona al medico fijado por el boton seleccionar y devuelve el form a su estado anterior.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCambiarMedico_Click(object sender, EventArgs e)
         {
             try

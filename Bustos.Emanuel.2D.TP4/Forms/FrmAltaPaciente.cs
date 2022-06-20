@@ -18,6 +18,9 @@ namespace Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Vacia los textboxes.
+        /// </summary>
         public void Limpiar()
         {
             this.txtNombre.Text = string.Empty;
@@ -25,6 +28,11 @@ namespace Forms
             this.txtObraSocial.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Invoca al formulario anterior y cierre este.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmABM c = new FrmABM(false);
@@ -33,6 +41,11 @@ namespace Forms
 
         }
 
+        /// <summary>
+        /// Valida los datos ingresados, crea un paciente y limpia el form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
@@ -63,6 +76,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Modifica el aspecto del form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmAltaPaciente_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;

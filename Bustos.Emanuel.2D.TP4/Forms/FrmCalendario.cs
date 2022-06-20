@@ -23,16 +23,27 @@ namespace Forms
             anio = DateTime.Now.Year;
         }
 
+        /// <summary>
+        /// Devuelve el mes guardado en este form.
+        /// </summary>
         public static int Mes
         {
             get { return mes; }
         }
 
+        /// <summary>
+        /// Devuelve el año guardado en este form.
+        /// </summary>
         public static int Anio
         {
             get { return anio; }
         }
 
+        /// <summary>
+        /// Llama al FrmMenuPrincipal y cierra este.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmMenuPrincipal menu = new FrmMenuPrincipal();
@@ -40,6 +51,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Cambia aspectos esteticos de este form y llama al metodo MostrarDias.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmCalendario_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;
@@ -54,6 +70,9 @@ namespace Forms
             this.MostrarDias();
         }
 
+        /// <summary>
+        /// Crea el calendario del form.
+        /// </summary>
         private void MostrarDias()
         {
             this.lblMes.Text = DateTimeFormatInfo.CurrentInfo.GetMonthName(mes) + $" {anio}";
@@ -73,6 +92,9 @@ namespace Forms
 
         }
 
+        /// <summary>
+        /// Modifica el mes guardado en este form.
+        /// </summary>
         private void MesSiguiente()
         {
             if (mes == 12)
@@ -86,6 +108,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Modifica el form para que muestre el mes siguiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSiguiente_Click(object sender, EventArgs e)
         {
             flpDias.Controls.Clear();
@@ -93,6 +120,9 @@ namespace Forms
             this.MostrarDias();
         }
 
+        /// <summary>
+        /// Modifica el mes guardado en este form.
+        /// </summary>
         private void MesAnterior()
         {
             if (mes == 1)
@@ -106,6 +136,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Modifica el form para que muestre el mes anterior.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAnterior_Click(object sender, EventArgs e)
         {
             flpDias.Controls.Clear();

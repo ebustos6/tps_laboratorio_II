@@ -88,6 +88,11 @@ namespace Forms
             this.txtPass.Text = "123";
         }
 
+        /// <summary>
+        /// Llama a importar recursos y cambia el color del form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmLogin_Load(object sender, EventArgs e)
         {
             this.lblPass.ForeColor = Color.White;
@@ -96,6 +101,9 @@ namespace Forms
             this.ImportarRecursos();
         }
 
+        /// <summary>
+        /// Crea dos task diferentes para importar por un lado lo que esta en archivos XML y por otro en DB.
+        /// </summary>
         private void ImportarRecursos()
         {
             try

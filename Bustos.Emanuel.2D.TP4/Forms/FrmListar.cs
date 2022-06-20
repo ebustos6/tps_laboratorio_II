@@ -22,6 +22,11 @@ namespace Forms
             this.tipoLista = tipoLista;
         }
 
+        /// <summary>
+        /// Cambia el color del form, llama a cargarDatos y deshabilita el boton adicional.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmListar_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;
@@ -30,6 +35,11 @@ namespace Forms
             this.CargarDatos();
         }
 
+        /// <summary>
+        /// Invoca al formulario anterior, dependiendo del tipo de lista que se ingreso cuando se creo este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             switch (this.tipoLista)
@@ -61,6 +71,9 @@ namespace Forms
             }   
         }
 
+        /// <summary>
+        /// Modifica aspectos del form y carga el datagrid, dependiendo del tipo de lista ingresado al crear el form.
+        /// </summary>
         public void CargarDatos()
         {
             try
@@ -108,6 +121,11 @@ namespace Forms
             
         }
 
+        /// <summary>
+        /// Agrega funcionalidad al boton adicional, en caso de que este sea permitido segun el tipo de lista.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdicional_Click(object sender, EventArgs e)
         {
             try
@@ -158,6 +176,10 @@ namespace Forms
             }   
         }
 
+        /// <summary>
+        /// Modifica columnas del datagrid en caso de que el tipo de lista lo necesite.
+        /// </summary>
+        /// <param name="opcion"></param>
         private void ModificarDataGrid(int opcion)
         {
             if (opcion == 1 || opcion == 2)

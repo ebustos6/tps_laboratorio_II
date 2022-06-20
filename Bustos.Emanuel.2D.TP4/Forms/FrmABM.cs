@@ -19,6 +19,11 @@ namespace Forms
             this.esMedico = esMedico;
         }
 
+        /// <summary>
+        /// Invoca a un menu principal y cierra este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmMenuPrincipal m = new FrmMenuPrincipal();
@@ -26,6 +31,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Instancia un formulario listar dependiendo bool ingresado al crear este form, luego cierre el form activo.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnListar_Click(object sender, EventArgs e)
         {
             if (esMedico)
@@ -42,6 +52,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Modifica el aspecto de este form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmABM_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;
@@ -55,6 +70,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Dependiendo el bool ingresado al crear este form, llama a un formulario crear y cierra este.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCrear_Click(object sender, EventArgs e)
         {
             if (esMedico)

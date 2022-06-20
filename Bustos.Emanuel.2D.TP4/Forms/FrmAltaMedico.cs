@@ -18,6 +18,9 @@ namespace Forms
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Vacia los campos del form.
+        /// </summary>
         public void Limpiar()
         {
             this.txtNombre.Text = string.Empty;
@@ -28,6 +31,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Invoca al formulario anterior y cierra este.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnVolver_Click(object sender, EventArgs e)
         {
             FrmABM c = new FrmABM(true);
@@ -35,6 +43,11 @@ namespace Forms
             this.Close();
         }
 
+        /// <summary>
+        /// Modifica aspectos esteticos del form y carga el checkedlistbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FrmAltaMedico_Load(object sender, EventArgs e)
         {
             this.BackColor = Color.Black;
@@ -46,6 +59,11 @@ namespace Forms
             this.clbDiasDisponibles.Items.AddRange(new[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" });
         }
 
+        /// <summary>
+        /// Valida los datos ingresados, crea una medico y limpia el form.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
@@ -76,6 +94,11 @@ namespace Forms
             }
         }
 
+        /// <summary>
+        /// Devuelve una lista con los dias seleccionados en el checkedlistbox.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private List<Dias> ListarDiasDisponibles()
         {
             List<Dias> diasDisponibles = new List<Dias>();
